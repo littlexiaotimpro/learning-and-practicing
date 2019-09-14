@@ -59,3 +59,14 @@ Memory Usage: 37.5 MB, less than 98.95% of Java online submissions for Two Sum.
 结语
 ---
 如果对代码有疑问，或者认为有更好的方法，欢迎指出
+
+## 以下知识作为扩展
+本文只介绍在算法中使用到的集合特性，并不会将整个Map属性及方法全部介绍，后续可能会在JDK源码学习系列文章中会对此进行准确的描述。
+
+`Map` 官方定义是：
+
+> public interface Map<K,V>  
+> An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.
+
+它是一个接口对象，并以键值对的方式存储数据，一个键位对应一个值，且 `key` 为唯一值，不能重复。
+
