@@ -2,6 +2,7 @@ package com.practice.dto;
 
 import com.google.common.base.Converter;
 import com.practice.entity.User;
+import com.practice.utils.convert.ConvertUtils;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.beans.BeanUtils;
@@ -20,6 +21,18 @@ public class UserDTO {
     private String userName;
     private int age;
     private Date birthday;
+
+    public User convertTo() {
+        ConvertUtils<UserDTO, User> convertUtils = new ConvertUtils<UserDTO, User>();
+        convertUtils.setA(this).setB(new User());
+        return convertUtils.convertTo();
+    }
+
+    public UserDTO convertBack(User user) {
+        ConvertUtils<UserDTO, User> convertUtils = new ConvertUtils<UserDTO, User>();
+        convertUtils.setA(new UserDTO()).setB(user);
+        return convertUtils.convertBack();
+    }
 
     /**
      * 正向转换
