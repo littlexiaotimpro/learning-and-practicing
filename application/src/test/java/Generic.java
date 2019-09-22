@@ -3,7 +3,12 @@ import com.practice.entity.User;
 import com.practice.service.GenericService;
 import com.practice.service.impl.GenericServiceImpl;
 import com.practice.utils.convert.ConvertUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName Generic
@@ -11,6 +16,7 @@ import org.junit.Test;
  * @Author XiaoSi
  * @Date 2019/9/922:51
  */
+@Slf4j
 public class Generic {
 
     @Test
@@ -71,6 +77,34 @@ public class Generic {
         userDTO.setUserName("userOneChange");
         user = userDTO.convertTo();
         System.out.println(user);
+    }
+
+    @Test
+    public void testErase(){
+        List<String> list1 = new ArrayList<String>();
+        list1.add("aa");
+        String str = list1.get(0);
+
+        List<Integer> list2 = new ArrayList<Integer>();
+        list2.add(100);
+        Integer integer = list2.get(0);
+    }
+
+    @Test
+    public void testList() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        List<String> list1 = new ArrayList<String>();
+        List<Integer> list2 = new ArrayList<Integer>();
+        log.info("数据类型：lis1 -> [{}], list2 -> [{}] ", list1.getClass(), list2.getClass());
+        list1.getClass().getMethod("add", Object.class).invoke(list1, 100);
+        log.info("list1: {}, list2: {}, class(list1 = list2): [{}]", list1.toString(), list2.toString(), list1.getClass() == list2.getClass());
+    }
+
+    @Test
+    public void testWildcard() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        // 使用通配符无法直接add数据
+        List<?> list = new ArrayList<>();
+        list.getClass().getMethod("add", Object.class).invoke(list, 100);
+        log.info("数据类型：list3 -> [{}], list3: [{}]", list.getClass(), list.get(0).getClass());
     }
 
 }

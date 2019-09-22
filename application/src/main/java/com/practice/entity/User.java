@@ -3,6 +3,7 @@ package com.practice.entity;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 @Accessors(chain = true)
 @Data
-public class User {
+public class User implements Serializable {
     private String code;
     private String userName;
     private int age;
