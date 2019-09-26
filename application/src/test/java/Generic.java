@@ -1,4 +1,5 @@
 import com.practice.dto.UserDTO;
+import com.practice.entity.Account;
 import com.practice.entity.User;
 import com.practice.service.GenericService;
 import com.practice.service.impl.GenericServiceImpl;
@@ -80,7 +81,7 @@ public class Generic {
     }
 
     @Test
-    public void testErase(){
+    public void testErase() {
         List<String> list1 = new ArrayList<String>();
         list1.add("aa");
         String str = list1.get(0);
@@ -99,12 +100,47 @@ public class Generic {
         log.info("list1: {}, list2: {}, class(list1 = list2): [{}]", list1.toString(), list2.toString(), list1.getClass() == list2.getClass());
     }
 
+    /**
+     * 通配符
+     */
     @Test
-    public void testWildcard() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void testWildcard() {
+
+        User[] users = new User[3];
+        users[0] = new User();
+        users[1] = new Account("1");
+
         // 使用通配符无法直接add数据
-        List<?> list = new ArrayList<>();
-        list.getClass().getMethod("add", Object.class).invoke(list, 100);
-        log.info("数据类型：list3 -> [{}], list3: [{}]", list.getClass(), list.get(0).getClass());
+        List<?> list1 = new ArrayList<String>();
+
+        List<Object> list2 = new ArrayList<>();
+        list2.add("ss");
+        list2.add(1);
+    }
+
+    /**
+     * 上界通配符
+     */
+    @Test
+    public void testExtendsWildcard() {
+        List<? extends User> list = new ArrayList<>();
+//        list.add(new User());
+//        list.add(new Account("0"));
+        User user = list.get(0);
+//        Account account = list.get(0);
+    }
+
+    /**
+     * 上界通配符
+     */
+    @Test
+    public void testSuperWildcard() {
+        List<? super Account> list = new ArrayList<>();
+        list.add(new Account("0"));
+//        list.add(new User());
+//        User user = list.get(0);
+//        Account account = list.get(0);
+        Object object = list.get(0);
     }
 
 }
