@@ -24,6 +24,7 @@ public class _List {
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
+        list.add(3);
 
         List<Integer> list1 = new ArrayList<>(2);
         list1.add(1);
