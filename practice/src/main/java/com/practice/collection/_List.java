@@ -21,8 +21,30 @@ public class _List {
      * ArrayList
      */
     private void arrayList() {
-        List list = new ArrayList();
-        System.out.println("ArrayList");
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+
+        List<Integer> list1 = new ArrayList<>(2);
+        list1.add(1);
+        list1.add(2);
+        // grow
+        list1.add(3);
+
+        List<Integer> list2 = new ArrayList<>(0);
+        list2.add(1);
+
+        List<Integer> list3 = new ArrayList<>(list);
+        list3.add(1);
+
+        List<Integer> list4 = new ArrayList<>(new ArrayList<>());
+        list4.add(1);
+
+        System.out.println("list: " + list);
+        System.out.println("list1: " + list1);
+        System.out.println("list2: " + list2);
+        System.out.println("list3: " + list3);
+        System.out.println("list4: " + list4);
     }
 
     /**

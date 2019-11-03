@@ -84,7 +84,3 @@ Memory Usage: 38.3 MB, less than 49.53% of Java online submissions for Longest S
 ---
 如果对代码有疑问，或者认为有更好的方法，欢迎指出
 
-## 以下知识作为扩展
-关于内容中提到的集合Set
-
-
