@@ -1,6 +1,8 @@
 package com.practice.collection;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -68,9 +70,21 @@ public class _List {
         return new _List();
     }
 
+    private void subList() {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(100);
+        for (int i = 0; i < list.size()-1; i++) {
+            System.out.println(Arrays.toString(list.subList(i, i == list.size() - 1 ? list.size() : i + 2).toArray()));
+        }
+    }
+
     public static void main(String[] args) {
         instance = getInstance();
-        instance.arrayList();
-        instance.linkedList();
+//        instance.arrayList();
+//        instance.linkedList();
+        instance.subList();
     }
 }

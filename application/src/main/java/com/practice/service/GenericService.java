@@ -14,7 +14,7 @@ public interface GenericService<T> {
      * 修饰的方法可以在接口中有具体实现
      * 同时实现类内部可以重写此方法
      */
-    default void testDefault() {
-    }
+//    default void testDefault() {
+//    }
 
 }
