@@ -14,7 +14,8 @@
 - 1.比较两个资源字符串能否被子串完全替换
 - 2.获取字串最后的出现位置结合长度的最大公因子比较求解
 
-``` java
+```java
+public class Solution {
     public String gcdOfStrings(String str1, String str2) {
         int s1 = str1.length();
         int s2 = str2.length();
@@ -32,5 +33,28 @@
         int lastIndexOf2 = str2.lastIndexOf(answer);
         return (s1 + s2 - 2 * result) == (lastIndexOf1 + lastIndexOf2) ? answer : "";
     }
+}
 ```
 
+思路二：
+如果存在结果，则两个字符串拼接后一定为整数倍的公因子串，所以如果 1+2 != 2+1 则一定无解
+
+辗转相除法求字符串长度的最大公约数
+- 1.gcd(a,0) = a
+- 2.gcd(a,b) = gcd(b,a mod b)
+
+```java
+public class Solution {
+    public String gcdOfStrings_best(String str1, String str2) {
+        if (!(str1 + str2).equals(str2 + str1)) {
+            return "";
+        }
+        // 辗转相除法求gcd。
+        return str1.substring(0, gcd(str1.length(), str2.length()));
+    }
+
+    private int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+}
+```

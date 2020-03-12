@@ -35,10 +35,25 @@ public class Solution {
         return (s1 + s2 - 2 * result) == (lastIndexOf1 + lastIndexOf2) ? answer : "";
     }
 
+    public String gcdOfStrings_best(String str1, String str2) {
+        if (!(str1 + str2).equals(str2 + str1)) {
+            return "";
+        }
+        // 辗转相除法求gcd。
+        return str1.substring(0, gcd(str1.length(), str2.length()));
+    }
+
+    private int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         System.out.println(solution.gcdOfStrings("ABCABC", "ABC"));
         System.out.println(solution.gcdOfStrings("AAD", "AA"));
         System.out.println(solution.gcdOfStrings("AAAAAA", "AAAA"));
+        System.out.println(solution.gcdOfStrings_best("ABCABC", "ABC"));
+        System.out.println(solution.gcdOfStrings_best("AAD", "AA"));
+        System.out.println(solution.gcdOfStrings_best("AAAAAA", "AAAA"));
     }
 }
