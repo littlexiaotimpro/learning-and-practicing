@@ -10,7 +10,9 @@
 
 求解两个字符串相同的最长子串，且每个字符串都可以由若干（>=1）个字串组成。
 
-通过计算两个字符串长度的最大公因子，截取子串，然后比较两个资源字符串能否被子串完全替换
+通过计算两个字符串长度的最大公因子，截取子串
+- 1.比较两个资源字符串能否被子串完全替换
+- 2.获取字串最后的出现位置结合长度的最大公因子比较求解
 
 ``` java
     public String gcdOfStrings(String str1, String str2) {
@@ -23,11 +25,12 @@
             }
         }
         String answer = str1.substring(0, result);
-        str1 = str1.replaceAll(answer, "");
-        str2 = str2.replaceAll(answer, "");
-        return "".equals(str1) && "".equals(str2) ? answer : "";
+//        str1 = str1.replaceAll(answer, "");
+//        str2 = str2.replaceAll(answer, "");
+//        return "".equals(str1) && "".equals(str2) ? answer : "";
+        int lastIndexOf1 = str1.lastIndexOf(answer);
+        int lastIndexOf2 = str2.lastIndexOf(answer);
+        return (s1 + s2 - 2 * result) == (lastIndexOf1 + lastIndexOf2) ? answer : "";
     }
 ```
-
-思路二：
 

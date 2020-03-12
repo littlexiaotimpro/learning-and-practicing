@@ -12,6 +12,7 @@ public class Solution {
      * 思路一
      * 通过计算两个字符串长度的最大公因子
      * 截取子串，然后比较两个资源字符串能否被子串完全替换
+     *
      * @param str1 资源字符串：1
      * @param str2 资源字符串：2
      * @return 结果
@@ -26,9 +27,12 @@ public class Solution {
             }
         }
         String answer = str1.substring(0, result);
-        str1 = str1.replaceAll(answer, "");
-        str2 = str2.replaceAll(answer, "");
-        return "".equals(str1) && "".equals(str2) ? answer : "";
+//        str1 = str1.replaceAll(answer, "");
+//        str2 = str2.replaceAll(answer, "");
+//        return "".equals(str1) && "".equals(str2) ? answer : "";
+        int lastIndexOf1 = str1.lastIndexOf(answer);
+        int lastIndexOf2 = str2.lastIndexOf(answer);
+        return (s1 + s2 - 2 * result) == (lastIndexOf1 + lastIndexOf2) ? answer : "";
     }
 
     public static void main(String[] args) {
