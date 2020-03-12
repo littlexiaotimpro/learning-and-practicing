@@ -1,0 +1,33 @@
+# 1071. 字符串的最大公因子
+
+<span style="color:green">**Simple**</span>
+
+对于字符串 S 和 T，只有在 S = T + ... + T（T 与自身连接 1 次或多次）时，我们才认定 “T 能除尽 S”。
+
+返回最长字符串 X，要求满足 X 能除尽 str1 且 X 能除尽 str2。
+
+思路一：
+
+求解两个字符串相同的最长子串，且每个字符串都可以由若干（>=1）个字串组成。
+
+通过计算两个字符串长度的最大公因子，截取子串，然后比较两个资源字符串能否被子串完全替换
+
+``` java
+    public String gcdOfStrings(String str1, String str2) {
+        int s1 = str1.length();
+        int s2 = str2.length();
+        int result = 0;
+        for (int i = 1; i <= Math.min(s1, s2); i++) {
+            if (s1 % i == 0 && s2 % i == 0) {
+                result = i;
+            }
+        }
+        String answer = str1.substring(0, result);
+        str1 = str1.replaceAll(answer, "");
+        str2 = str2.replaceAll(answer, "");
+        return "".equals(str1) && "".equals(str2) ? answer : "";
+    }
+```
+
+思路二：
+
