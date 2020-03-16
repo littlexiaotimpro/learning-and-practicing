@@ -35,6 +35,15 @@ public class Solution {
         return (s1 + s2 - 2 * result) == (lastIndexOf1 + lastIndexOf2) ? answer : "";
     }
 
+
+    /**
+     * 思路二
+     * 数学思想中求最大公约数的方法：辗转相除法
+     *
+     * @param str1 资源字符串：1
+     * @param str2 资源字符串：2
+     * @return 结果
+     */
     public String gcdOfStrings_best(String str1, String str2) {
         if (!(str1 + str2).equals(str2 + str1)) {
             return "";

@@ -1,5 +1,7 @@
 package com.practice.leetcode.interview_01_06;
 
+import java.util.Objects;
+
 /**
  * @author XiaoSi
  * @className Solution
@@ -34,5 +36,22 @@ public class Solution {
             String result = builder.toString();
             return result.length() >= S.length() ? S : result;
         }
+    }
+
+    /**
+     * 思路一：累计并统计字符出现次数，拼接求结果
+     */
+    public String compressString_(String S) {
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        //思路一
+        String result = solution.compressString("AAaaaaCCCCCacccDDdddd");
+        System.out.println(Objects.equals("A2a4C5a1c3D2d4", result));
+        //思路二
+        result = solution.compressString_("AAaaaaCCCCCacccDDdddd");
+        System.out.println(Objects.equals("A2a4C5a1c3D2d4", result));
     }
 }
