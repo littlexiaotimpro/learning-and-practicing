@@ -24,6 +24,8 @@ public class _Sort {
         }
         for (int i = 0; i < source.length; i++) {
             int index = i;
+            // 从头开始遍历，排序子序列位于整个数组的头部
+            // 每一次比较确定一个最小值的索引，最后将最小索引位与当前位置的值进行替换
             for (int j = i + 1; j < source.length; j++) {
                 if (source[j] < source[index]) {
                     index = j;
@@ -49,6 +51,8 @@ public class _Sort {
             return source;
         }
         for (int i = 0; i < source.length - 1; i++) {
+            // 从头开始的遍历操作，尾部序列是已经排好序的子序列
+            // 每一次比较相邻两个位置的元素大小，较大值后移，重复此操作
             for (int j = 0; j < source.length - 1 - i; j++) {
                 if (source[j + 1] < source[j]) {
                     int min = source[j + 1];
@@ -75,11 +79,27 @@ public class _Sort {
         for (int i = 1; i < source.length; i++) {
             int curr = source[i];
             int j = i - 1;
+            // 从头开始的遍历操作，头部序列是已经排好序的子序列
+            // 寻找目标值在有序子序列中的插入位置，子序列相应元素每次遍历依次向后位移
             for (; j >= 0 && curr < source[j]; j--) {
                 source[j + 1] = source[j];
-
             }
             source[j + 1] = curr;
+        }
+        return source;
+    }
+
+    /**
+     * 希尔排序
+     * 时间复杂度：O(nlogn)
+     * 空间复杂度：O(1)
+     * 非稳定排序，原地排序
+     * @param source 目标数组
+     * @return 排序后的数组
+     */
+    private static int[] shellSort(int[] source){
+        if (source == null || source.length <= 1) {
+            return source;
         }
         return source;
     }
