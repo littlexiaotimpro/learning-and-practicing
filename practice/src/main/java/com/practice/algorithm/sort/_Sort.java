@@ -31,9 +31,11 @@ public class _Sort {
                     index = j;
                 }
             }
-            int min = source[i];
-            source[i] = source[index];
-            source[index] = min;
+            if (index != i) {
+                int min = source[i];
+                source[i] = source[index];
+                source[index] = min;
+            }
         }
         return source;
     }
@@ -110,7 +112,7 @@ public class _Sort {
      */
     public static void main(String[] args) {
         int[] source = {5, 9, 3, 2, 4, 1, 0, 0, 1, 34, 6};
-        System.out.println("排序前 => " + Arrays.toString(selectSort(source)));
+        System.out.println("排序前 => " + Arrays.toString(source));
         //1.选择排序
         System.out.println("选择排序 => " + Arrays.toString(selectSort(source)));
         //2.冒泡排序
