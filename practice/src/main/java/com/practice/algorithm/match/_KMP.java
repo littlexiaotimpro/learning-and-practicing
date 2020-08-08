@@ -1,7 +1,10 @@
-package com.practice.algorithm;
+package com.practice.algorithm.match;
 
 import java.util.Arrays;
 
+/**
+ * 字符串匹配算法
+ */
 public class _KMP {
 
     private static void patternPrefix(CharSequence cs, int[] prefix, int n) {

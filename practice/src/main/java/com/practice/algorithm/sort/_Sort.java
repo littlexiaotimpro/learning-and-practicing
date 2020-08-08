@@ -1,4 +1,4 @@
-package com.practice.algorithm;
+package com.practice.algorithm.sort;
 
 import java.util.Arrays;
 
@@ -110,6 +110,7 @@ public class _Sort {
      */
     public static void main(String[] args) {
         int[] source = {5, 9, 3, 2, 4, 1, 0, 0, 1, 34, 6};
+        System.out.println("排序前 => " + Arrays.toString(selectSort(source)));
         //1.选择排序
         System.out.println("选择排序 => " + Arrays.toString(selectSort(source)));
         //2.冒泡排序
