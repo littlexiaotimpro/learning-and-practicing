@@ -3,10 +3,7 @@ package com.practice.algorithm.sort;
 import java.util.Arrays;
 
 /**
- * @author XiaoSi
- * @className _Sort
- * @description 排序
- * @date 2020/4/2
+ * 排序算法
  */
 public class _Sort {
 
@@ -15,6 +12,7 @@ public class _Sort {
      * 时间复杂度：O(n2)
      * 空间复杂度：O(1)
      * 非稳定排序，原地排序
+     *
      * @param source 目标数组
      * @return 排序后的数组
      */
@@ -45,10 +43,11 @@ public class _Sort {
      * 时间复杂度：O(n2)
      * 空间复杂度：O(1)
      * 稳定排序，原地排序
+     *
      * @param source 目标数组
      * @return 排序后的数组
      */
-    private static int[] bubbleSort(int[] source){
+    private static int[] bubbleSort(int[] source) {
         if (source == null || source.length <= 1) {
             return source;
         }
@@ -71,10 +70,11 @@ public class _Sort {
      * 时间复杂度：O(n2)
      * 空间复杂度：O(1)
      * 稳定排序，原地排序
+     *
      * @param source 目标数组
      * @return 排序后的数组
      */
-    private static int[] insertSort(int[] source){
+    private static int[] insertSort(int[] source) {
         if (source == null || source.length <= 1) {
             return source;
         }
@@ -93,15 +93,33 @@ public class _Sort {
 
     /**
      * 希尔排序
-     * 时间复杂度：O(nlogn)
+     * 时间复杂度：O(n*log2(n))
      * 空间复杂度：O(1)
      * 非稳定排序，原地排序
+     *
      * @param source 目标数组
      * @return 排序后的数组
      */
-    private static int[] shellSort(int[] source){
+    private static int[] shellSort(int[] source) {
         if (source == null || source.length <= 1) {
             return source;
+        }
+        int length = source.length;
+        int increment = length >> 1;
+        while (increment >= 1) {
+            for (int i = 0; i < increment; i++) {
+                for (int j = i + increment; j < length; j += increment) {
+                    // 内部逻辑为插入排序
+                    // 每次元素的跨度为当前的增量值
+                    int curr = source[j];
+                    int k = j - increment;
+                    for (; k >= 0 && curr < source[k]; k -= increment) {
+                        source[k + increment] = source[k];
+                    }
+                    source[k + increment] = curr;
+                }
+            }
+            increment = increment >> 1;
         }
         return source;
     }
@@ -111,15 +129,18 @@ public class _Sort {
      * 1ms = 10^6ns
      */
     public static void main(String[] args) {
-        int[] source = {5, 9, 3, 2, 4, 1, 0, 0, 1, 34, 6};
+        int[] source = {5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
         System.out.println("排序前 => " + Arrays.toString(source));
         //1.选择排序
         System.out.println("选择排序 => " + Arrays.toString(selectSort(source)));
         //2.冒泡排序
-        source = new int[]{5, 9, 3, 2, 4, 9,1, 0, 0, 1, 34, 6};
+        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
         System.out.println("冒泡排序 => " + Arrays.toString(bubbleSort(source)));
         //3.插入排序
-        source = new int[]{5, 9, 3, 2, 4, 9,1, 0, 0, 1, 34, 6};
+        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
         System.out.println("插入排序 => " + Arrays.toString(insertSort(source)));
+        //4.希尔排序
+        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+        System.out.println("希尔排序 => " + Arrays.toString(shellSort(source)));
     }
 }
