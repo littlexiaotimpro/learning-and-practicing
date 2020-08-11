@@ -162,26 +162,64 @@ public class _Sort {
     }
 
     /**
+     * 计数排序
+     *
+     * @param source 资源数组
+     * @param n      数组长度
+     */
+    private static void countingSort(int[] source, int n) {
+        int min = source[0];
+        int max = source[0];
+        for (int i = 1; i < n; i++) {
+            if (source[i] > max) {
+                max = source[i];
+            }
+            if (source[i] < min) {
+                min = source[i];
+            }
+        }
+        // 将元素值作为索引存入临时数组
+        int[] tran = new int[max - min + 1];
+        for (int i = 0; i < n; i++) {
+            tran[source[i]] = ++tran[source[i]];
+        }
+        // 将临时数组中个元素的值返回至原数组，其中辅助数组的值表示索引元素出现的次数
+        int k = 0;
+        for (int i = 0; i < tran.length; i++) {
+            if (tran[i] > 0) {
+                for (int j = 0; j < tran[i]; j++) {
+                    source[k++] = i;
+                }
+            }
+        }
+    }
+
+    /**
      * 1s = 1000ms
      * 1ms = 10^6ns
      */
     public static void main(String[] args) {
         int[] source = {5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
         System.out.println("排序前 => " + Arrays.toString(source));
-        //1.选择排序
-        System.out.println("选择排序 => " + Arrays.toString(selectSort(source)));
-        //2.冒泡排序
+//        //1.选择排序
+//        System.out.println("选择排序 => " + Arrays.toString(selectSort(source)));
+//        //2.冒泡排序
+//        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+//        System.out.println("冒泡排序 => " + Arrays.toString(bubbleSort(source)));
+//        //3.插入排序
+//        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+//        System.out.println("插入排序 => " + Arrays.toString(insertSort(source)));
+//        //4.希尔排序
+//        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+//        System.out.println("希尔排序 => " + Arrays.toString(shellSort(source)));
+//        //5.快速排序
+//        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+//        quickSort(source, 0, source.length - 1);
+//        System.out.println("快速排序 => " + Arrays.toString(source));
+
+        //6.计数排序
         source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
-        System.out.println("冒泡排序 => " + Arrays.toString(bubbleSort(source)));
-        //3.插入排序
-        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
-        System.out.println("插入排序 => " + Arrays.toString(insertSort(source)));
-        //4.希尔排序
-        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
-        System.out.println("希尔排序 => " + Arrays.toString(shellSort(source)));
-        //5.快速排序
-        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
-        quickSort(source, 0, source.length-1);
-        System.out.println("快速排序 => " + Arrays.toString(source));
+        countingSort(source, source.length);
+        System.out.println("计数排序 => " + Arrays.toString(source));
     }
 }
