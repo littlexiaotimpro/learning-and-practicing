@@ -190,8 +190,11 @@ public class _Sort {
         int k = 0;
         for (int i = 0; i < tran.length; i++) {
             if (tran[i] > 0) {
+                int index = k + tran[i];
+                // 按元素统计顺序逆序插入，保证排序算法的稳定性
                 for (int j = 0; j < tran[i]; j++) {
-                    source[k++] = i;
+                    source[--index] = i;
+                    k++;
                 }
             }
         }
@@ -204,21 +207,21 @@ public class _Sort {
     public static void main(String[] args) {
         int[] source = {5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
         System.out.println("排序前 => " + Arrays.toString(source));
-        //1.选择排序
-        System.out.println("选择排序 => " + Arrays.toString(selectSort(source)));
-        //2.冒泡排序
-        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
-        System.out.println("冒泡排序 => " + Arrays.toString(bubbleSort(source)));
-        //3.插入排序
-        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
-        System.out.println("插入排序 => " + Arrays.toString(insertSort(source)));
-        //4.希尔排序
-        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
-        System.out.println("希尔排序 => " + Arrays.toString(shellSort(source)));
-        //5.快速排序
-        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
-        quickSort(source, 0, source.length - 1);
-        System.out.println("快速排序 => " + Arrays.toString(source));
+//        //1.选择排序
+//        System.out.println("选择排序 => " + Arrays.toString(selectSort(source)));
+//        //2.冒泡排序
+//        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+//        System.out.println("冒泡排序 => " + Arrays.toString(bubbleSort(source)));
+//        //3.插入排序
+//        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+//        System.out.println("插入排序 => " + Arrays.toString(insertSort(source)));
+//        //4.希尔排序
+//        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+//        System.out.println("希尔排序 => " + Arrays.toString(shellSort(source)));
+//        //5.快速排序
+//        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+//        quickSort(source, 0, source.length - 1);
+//        System.out.println("快速排序 => " + Arrays.toString(source));
 
         //6.计数排序
         source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
