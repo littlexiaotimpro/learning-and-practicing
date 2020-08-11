@@ -6,9 +6,6 @@ import java.util.Arrays;
  * 堆排序
  * 1.了解堆的结构
  * 2.如何使用堆进行排序
- *
- * 空间复杂度：原地排序，O(1)
- * 时间复杂度：O(n*log(n))
  */
 public class _HeapSort {
 
@@ -23,7 +20,7 @@ public class _HeapSort {
 
     /**
      * 对每一个节点进行堆的结构转化
-     * 堆的特点：完全二叉树，父节点比子节点大
+     * 堆的特点：完全二叉树，父节点的值不小于或不大于子节点的值
      */
     private static void heapify(int[] arr, int n, int i) {
         if (i >= n) {
@@ -59,6 +56,10 @@ public class _HeapSort {
     /**
      * 堆排序，由于每次执行堆化操作后第一个元素一定为最大或最小值
      * 依据排序要求，替换首位元素的位置，再重复进行操作
+     *
+     * 时间复杂度：O(n*log(n))
+     * 空间复杂度：O(1)
+     * 不稳定排序，原地排序
      */
     private static void heapSort(int[] arr, int n) {
         buildHeap(arr, n);
