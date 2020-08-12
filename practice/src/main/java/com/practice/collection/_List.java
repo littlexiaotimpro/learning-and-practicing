@@ -76,6 +76,7 @@ public class _List {
         list.add(2);
         list.add(3);
         list.add(100);
+        list.add(list.size()-1,6);
         for (int i = 0; i < list.size()-1; i++) {
             System.out.println(Arrays.toString(list.subList(i, i == list.size() - 1 ? list.size() : i + 2).toArray()));
         }
