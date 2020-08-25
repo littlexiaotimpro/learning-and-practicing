@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <!-- 标签常用属性：
+            bean => id:实例表示, class:关联类型的全限定类名
+            property => name:属性名, value:基本数据类型及其包装类，字符串等类型的值, ref:引用外部 Bean实例
+     -->
+    <!-- 1.基础的对象创建 -->
+    <!--    <bean id="demo" class="com.practice.entity.BeanDemo"/>-->
+
+    <!-- 2.setter方式注入属性 -->
+    <!--    <bean id="demo" class="com.practice.entity.BeanDemo">-->
+    <!--        <property name="demoCode" value="0001"/>-->
+    <!--        <property name="demoString" value="demoProperty"/>-->
+    <!--    </bean>-->
+
+    <!-- 3.构成器注入属性 -->
+    <!-- 定义了带参构造器之后，若不提供无参构造器，按基础的对象创建方式创建对象会报错，提示没有默认的构造器 -->
+    <!--        <bean id="demoError" class="com.practice.entity.BeanDemo"/>-->
+    <!--        <bean id="demo" class="com.practice.entity.BeanDemo">-->
+    <!--            &lt;!&ndash; 带参构造器 &ndash;&gt;-->
+    <!--            <constructor-arg name="demoSize" value="100"/>-->
+    <!--        </bean>-->
+
+    <!-- 4.p 属性命名空间 -->
+    <!--    <bean id="demo" class="com.practice.entity.BeanDemo" p:demoCode="0001" p:demoString="code and string"/>-->
+
+</beans>
