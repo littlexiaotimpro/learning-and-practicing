@@ -2,7 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd
+                    http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- bean definitions here -->
     <!-- 标签常用属性：
@@ -29,4 +33,37 @@
     <!-- 4.p 属性命名空间 -->
     <!--    <bean id="demo" class="com.practice.entity.BeanDemo" p:demoCode="0001" p:demoString="code and string"/>-->
 
+    <!-- 5.注入特殊含特殊字符的值 -->
+    <!--    <bean id="demo" class="com.practice.entity.BeanDemo">-->
+    <!--        <property name="demoCode" value="&lt;0001&gt;"/>-->
+    <!--        <property name="demoString">-->
+    <!--            <value><![CDATA["<带特殊字符的串>"]]></value>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+
+    <!-- 注入集合属性，数组属性 -->
+    <bean id="demo" class="com.practice.entity.BeanDemo">
+        <property name="demoArray">
+            <array>
+                <value>one</value>
+                <value>two</value>
+            </array>
+        </property>
+        <property name="demoList">
+            <list>
+                <value>list_one</value>
+                <value>list_two</value>
+            </list>
+        </property>
+        <property name="demoMap">
+            <map>
+                <entry key="key_one">
+                    <value>map_one</value>
+                </entry>
+                <entry key="key_two">
+                    <value>map_two</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
 </beans>

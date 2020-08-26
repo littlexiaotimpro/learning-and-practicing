@@ -78,4 +78,38 @@ public class XMLBeanTest {
         */
     }
 
+    @Test
+    public void testSpecialValue() {
+        /*
+          若配置文件内容为：<property name="demoCode" value="<0001>"></property>
+          加载配置文件是会提示异常，提示具体位置的配置存在特殊字符
+          XmlBeanDefinitionStoreException：lineNumber: 34; columnNumber: 42; 与元素类型 "property" 相关联的 "value" 属性值不能包含 '<' 字符。
+          如果需要注入带特殊字符的值，则需要对字符进行转义，常用的xml转义字符 &lt;&gt;等，表示<>，分号结束表示一个字符实体
+         */
+        // 1.通过资源文件获取实现，解析 XML 配置文件
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean-config.xml");
+        // 2.调用getBean方法获取实例，demo为配置文件中配置的示例标识id
+        BeanDemo bean = context.getBean("demo", BeanDemo.class);
+        // class com.practice.entity.BeanDemo {demoCode=<0001>, demoString="<带特殊字符的串>", demoSize=null, demoBool=false}
+        System.out.println(bean);
+    }
+
+    @Test
+    public void testCollections() {
+        // 1.通过资源文件获取实现，解析 XML 配置文件
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean-config.xml");
+        // 2.调用getBean方法获取实例，demo为配置文件中配置的示例标识id
+        BeanDemo bean = context.getBean("demo", BeanDemo.class);
+
+        // 注入数组/集合属性，同基本属性注入，需要实体提供对应属性的setter方法
+        // 正确注入的展示结果
+        // class com.practice.entity.BeanDemo
+        // {demoCode=null, demoString=null, demoSize=null, demoBool=false,
+        // demoList=[list_one, list_two],
+        // demoMap={key_one=map_one, key_two=map_two},
+        // demoArray=[one, two],
+        // connect=null, connects=null}
+        System.out.println(bean);
+    }
+
 }
