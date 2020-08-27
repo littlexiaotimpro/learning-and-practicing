@@ -49,6 +49,25 @@ public class BeanDemo {
         this.demoArray = demoArray;
     }
 
+    public void setConnect(BeanDemoConnect connect) {
+        this.connect = connect;
+    }
+
+    public void setConnects(List<BeanDemoConnect> connects) {
+        this.connects = connects;
+    }
+
+    public List<BeanDemoConnect> getConnects() {
+        return connects;
+    }
+
+    /**
+     * 级联赋值获取对象
+     */
+    public BeanDemoConnect getConnect() {
+        return connect;
+    }
+
     @Override
     public String toString() {
         return getClass()
@@ -56,8 +75,8 @@ public class BeanDemo {
                 + ", demoString=" + demoString
                 + ", demoSize=" + demoSize
                 + ", demoBool=" + demoBool
-                + ", demoList=" + demoList.toString()
-                + ", demoMap=" + demoMap.toString()
+                + ", demoList=" + demoList
+                + ", demoMap=" + demoMap
                 + ", demoArray=" + Arrays.toString(demoArray)
                 + ", connect=" + connect
                 + ", connects=" + connects

@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 /**
  * 测试Spring的基于XML配置的Bean创建与属性注入
  */
@@ -110,6 +112,44 @@ public class XMLBeanTest {
         // demoArray=[one, two],
         // connect=null, connects=null}
         System.out.println(bean);
+    }
+
+    @Test
+    public void testBeanWired(){
+        // 1.通过资源文件获取实现，解析 XML 配置文件
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean-config.xml");
+        // 2.调用getBean方法获取实例，demo为配置文件中配置的示例标识id
+        BeanDemo bean = context.getBean("demo", BeanDemo.class);
+
+        // 内置 bean 注入
+        // class com.practice.entity.BeanDemoConnect{connectCode=00000, connectString=11111}
+        System.out.println(bean.getConnect());
+
+        // 需要注意，外部bean注入及级联赋值的方式无法引用内置bean方式创建的关联对象
+        // 外部 bean 注入
+        // class com.practice.entity.BeanDemoConnect{connectCode=00001, connectString=22222}
+        BeanDemo outDemo = context.getBean("outDemo", BeanDemo.class);
+        System.out.println(outDemo.getConnect());
+
+        // 级联赋值
+        // class com.practice.entity.BeanDemoConnect{connectCode=00002, connectString=33333}
+        BeanDemo linkDemo = context.getBean("linkDemo", BeanDemo.class);
+        System.out.println(linkDemo.getConnect());
+
+        // 内置对象集合注入
+        //[class com.practice.entity.BeanDemoConnect{connectCode=00001, connectString=22222},
+        // class com.practice.entity.BeanDemoConnect{connectCode=00002, connectString=33333}]
+        BeanDemo listDemo = context.getBean("listDemo", BeanDemo.class);
+        System.out.println(listDemo.getConnects());
+
+        // 抽取对象集合，外部注入(倒序输出)
+        // [class com.practice.entity.BeanDemoConnect{connectCode=00002, connectString=33333},
+        // class com.practice.entity.BeanDemoConnect{connectCode=00001, connectString=22222}]
+        List connectList = context.getBean("connectList", List.class);
+        System.out.println(connectList);
+        BeanDemo listDemoUtil = context.getBean("listDemoUtil", BeanDemo.class);
+        System.out.println(listDemoUtil.getConnects());
+
     }
 
 }
