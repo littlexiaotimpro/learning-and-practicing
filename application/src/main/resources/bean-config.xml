@@ -69,44 +69,45 @@
 
     <!-- 7.注入对象属性 -->
     <!-- 内部Bean -->
-    <bean id="demo" class="com.practice.entity.BeanDemo">
-        <property name="connect">
-            <bean id="connect" class="com.practice.entity.BeanDemoConnect">
-                <property name="connectCode" value="00000"/>
-                <property name="connectString" value="11111"/>
-            </bean>
-        </property>
-    </bean>
-    <!-- 外部Bean -->
-    <bean id="outDemo" class="com.practice.entity.BeanDemo">
-        <property name="connect" ref="outConnect"/>
-    </bean>
-    <bean id="outConnect" class="com.practice.entity.BeanDemoConnect">
-        <property name="connectCode" value="00001"/>
-        <property name="connectString" value="22222"/>
-    </bean>
-    <!-- 级联赋值 -->
-    <bean id="linkDemo" class="com.practice.entity.BeanDemo">
-        <property name="connect" ref="linkConnect"/>
-        <property name="connect.connectCode" value="00002"/>
-        <property name="connect.connectString" value="33333"/>
-    </bean>
-    <bean id="linkConnect" class="com.practice.entity.BeanDemoConnect"/>
-    <!-- 对象集合注入 -->
-    <bean id="listDemo" class="com.practice.entity.BeanDemo">
-        <property name="connects">
-            <list>
-                <ref bean="outConnect"/>
-                <ref bean="linkConnect"/>
-            </list>
-        </property>
-    </bean>
-    <!-- 抽取对象集合部分 -->
-    <bean id="listDemoUtil" class="com.practice.entity.BeanDemo">
-        <property name="connects" ref="connectList"/>
-    </bean>
-    <util:list id="connectList">
-        <ref bean="linkConnect"/>
-        <ref bean="outConnect"/>
-    </util:list>
+    <!--    <bean id="demo" class="com.practice.entity.BeanDemo">-->
+    <!--        <property name="connect">-->
+    <!--            <bean id="connect" class="com.practice.entity.BeanDemoConnect">-->
+    <!--                <property name="connectCode" value="00000"/>-->
+    <!--                <property name="connectString" value="11111"/>-->
+    <!--            </bean>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+    <!--    &lt;!&ndash; 外部Bean &ndash;&gt;-->
+    <!--    <bean id="outDemo" class="com.practice.entity.BeanDemo">-->
+    <!--        <property name="connect" ref="outConnect"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="outConnect" class="com.practice.entity.BeanDemoConnect">-->
+    <!--        <property name="connectCode" value="00001"/>-->
+    <!--        <property name="connectString" value="22222"/>-->
+    <!--    </bean>-->
+    <!--    &lt;!&ndash; 级联赋值 &ndash;&gt;-->
+    <!--    <bean id="linkDemo" class="com.practice.entity.BeanDemo">-->
+    <!--        <property name="connect" ref="linkConnect"/>-->
+    <!--        <property name="connect.connectCode" value="00002"/>-->
+    <!--        <property name="connect.connectString" value="33333"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="linkConnect" class="com.practice.entity.BeanDemoConnect"/>-->
+    <!--    &lt;!&ndash; 对象集合注入 &ndash;&gt;-->
+    <!--    <bean id="listDemo" class="com.practice.entity.BeanDemo">-->
+    <!--        <property name="connects">-->
+    <!--            <list>-->
+    <!--                <ref bean="outConnect"/>-->
+    <!--                <ref bean="linkConnect"/>-->
+    <!--            </list>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+    <!--    &lt;!&ndash; 抽取对象集合部分 &ndash;&gt;-->
+    <!--    <bean id="listDemoUtil" class="com.practice.entity.BeanDemo">-->
+    <!--        <property name="connects" ref="connectList"/>-->
+    <!--    </bean>-->
+    <!--    &lt;!&ndash; 以下的外部注入方式会生成一个集合对象，可以在容器中通过getBean的方式获取 &ndash;&gt;-->
+    <!--    <util:list id="connectList">-->
+    <!--        <ref bean="linkConnect"/>-->
+    <!--        <ref bean="outConnect"/>-->
+    <!--    </util:list>-->
 </beans>
