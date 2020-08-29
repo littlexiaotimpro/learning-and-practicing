@@ -1,6 +1,6 @@
 package com.practice.test;
 
-import com.practice.entity.BeanDemoAnnotation;
+import com.practice.entity.BeanDemoXML;
 import com.practice.service.DocumentHandlerService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +18,7 @@ public class XMLBeanMoreTest {
         // 1.通过资源文件获取实现，解析 XML 配置文件
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-config-more.xml");
         // 2.使用xml的自动装配功能，实现属性注入
-        BeanDemoAnnotation bean = context.getBean("demo", BeanDemoAnnotation.class);
+        BeanDemoXML bean = context.getBean("demo", BeanDemoXML.class);
         System.out.println(bean);
 
         /*
@@ -44,7 +44,7 @@ public class XMLBeanMoreTest {
     }
 
     @Test
-    public void testComponentScan() {
+    public void testXMLComponentScan() {
         // 验证简单的对象创建
         // 1.通过资源文件获取实现，解析 XML 配置文件
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-config-more.xml");
@@ -60,7 +60,7 @@ public class XMLBeanMoreTest {
 
         /*
          * 组件扫描的过程会将所有添加了注解@Component的类都加载进容器
-         * 常见注解有：@Controller、@RestController、@Service、@Component、@Configuration、...
+         * 常见注解有：@Controller、@RestController、@Service、@Configuration、@Repository、@Component ...
          * 这些注解内部都添加了@Component注解，在执行Component-scan的过程中，会被加载
          *
          * 默认的注解如果不设置具体的value值，那么创建的实例就是当前类名的首字母小写, 如, DocumentHandlerServiceImpl

@@ -10,17 +10,22 @@
             bean => id:实例表示, class:关联类型的全限定类名
             property => name:属性名, value:基本数据类型及其包装类，字符串等类型的值, ref:引用外部 Bean实例
      -->
-    <!-- 1.基于xml配置实现对象自动注入 -->
-    <!--    <bean id="demo" class="com.practice.entity.BeanDemoAnnotation" autowire="byType"/>-->
-    <!--    <bean id="connect" class="com.practice.entity.BeanDemoConnect"/>-->
-    <!--    <bean id="demoConnect" class="com.practice.entity.BeanDemoConnect"/>-->
+    <!--
+        1.基于xml配置实现对象自动注入
+            byName: 依据属性名进行注入，会匹配与属性名称相同的对象
+            byType: 依据类型注入，匹配与属性值类型相同的对象进行注入
+            需要注意：byType，如果定义两个属性相同类型的对象，通过类型匹配是会报错：UnsatisfiedDependencyException，NoUniqueBeanDefinitionException
+    -->
+        <bean id="demo" class="com.practice.entity.BeanDemoXML" autowire="byType"/>
+        <bean id="connect" class="com.practice.entity.BeanDemoConnect"/>
+<!--        <bean id="demoConnect" class="com.practice.entity.BeanDemoConnect"/>-->
 
     <!-- 2.Spring的指定包路径下的注解扫描，会创建所有添加了@Component注解的类的实例 -->
     <!-- use-default-filters:
             false:
-                表示不使用默认的过滤器, 可以指定扫描的组件内容, 如只扫描一部分注解, 结合include-filter使用
+                表示不使用默认的过滤器, 可以指定扫描的组件内容, 如只扫描一部分注解
             true:
-                使用默认的扫描内容,但可以指定并过滤掉部分扫描内容, 结合exclude-filter使用
+                使用默认的扫描内容,但可以指定并过滤掉部分扫描内容
     -->
     <context:component-scan base-package="com.practice" use-default-filters="false">
         <!-- 组件扫描的过程中，添加需要被扫描的对象,必须在exclude-filter前定义 -->
