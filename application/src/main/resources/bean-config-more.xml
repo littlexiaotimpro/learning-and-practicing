@@ -16,11 +16,17 @@
     <!--    <bean id="demoConnect" class="com.practice.entity.BeanDemoConnect"/>-->
 
     <!-- 2.Spring的指定包路径下的注解扫描，会创建所有添加了@Component注解的类的实例 -->
-    <context:component-scan base-package="com.practice">
+    <!-- use-default-filters:
+            false:
+                表示不使用默认的过滤器, 可以指定扫描的组件内容, 如只扫描一部分注解, 结合include-filter使用
+            true:
+                使用默认的扫描内容,但可以指定并过滤掉部分扫描内容, 结合exclude-filter使用
+    -->
+    <context:component-scan base-package="com.practice" use-default-filters="false">
+        <!-- 组件扫描的过程中，添加需要被扫描的对象,必须在exclude-filter前定义 -->
+        <context:include-filter type="annotation" expression=""/>
         <!-- 组件扫描的过程中，过滤掉不需要扫描的对象 -->
-        <!--        <context:exclude-filter type="annotation" expression=""/>-->
-        <!-- 组件扫描的过程中，添加需要被扫描的对象,不能和exclude-filter同时使用 -->
-        <!--        <context:include-filter type="annotation" expression=""/>-->
+        <context:exclude-filter type="annotation" expression=""/>
     </context:component-scan>
 
 </beans>
