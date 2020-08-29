@@ -16,7 +16,7 @@ public class XMLBeanTest {
     @Test
     public void testBean() {
         // 验证简单的对象创建
-        // 1.通过资源文件获取实现，解析 XML 配置文件
+        // 1.通过资源文件获取实现，解析 XML 配置文件，此过程会将对象创建完成
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-config.xml");
         // 2.调用getBean方法获取实例，demo为配置文件中配置的示例标识id
         BeanDemo bean = context.getBean("demo", BeanDemo.class);
