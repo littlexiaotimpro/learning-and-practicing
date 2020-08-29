@@ -8,6 +8,10 @@ public class BeanDemoAnnotation {
     public BeanDemoAnnotation() {
     }
 
+    public BeanDemoAnnotation(BeanDemoConnect connect) {
+        this.connect = connect;
+    }
+
     public void setConnect(BeanDemoConnect connect) {
         this.connect = connect;
     }
@@ -21,9 +25,6 @@ public class BeanDemoAnnotation {
 
     @Override
     public String toString() {
-        return getClass()
-                + " {demoCode="
-                + ", connect=" + connect
-                + "}";
+        return getClass() + " {connect=" + connect + "}";
     }
 }

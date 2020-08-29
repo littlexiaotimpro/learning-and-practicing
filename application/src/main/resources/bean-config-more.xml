@@ -15,4 +15,12 @@
     <!--    <bean id="connect" class="com.practice.entity.BeanDemoConnect"/>-->
     <!--    <bean id="demoConnect" class="com.practice.entity.BeanDemoConnect"/>-->
 
+    <!-- 2.Spring的指定包路径下的注解扫描，会创建所有添加了@Component注解的类的实例 -->
+    <context:component-scan base-package="com.practice">
+        <!-- 组件扫描的过程中，过滤掉不需要扫描的对象 -->
+        <!--        <context:exclude-filter type="annotation" expression=""/>-->
+        <!-- 组件扫描的过程中，添加需要被扫描的对象,不能和exclude-filter同时使用 -->
+        <!--        <context:include-filter type="annotation" expression=""/>-->
+    </context:component-scan>
+
 </beans>

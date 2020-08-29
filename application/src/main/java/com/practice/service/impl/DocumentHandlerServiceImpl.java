@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
  * @description 文件处理接口实现
  * @date 2020/2/6
  */
-@Service
+@Service("documentInstance")
 public class DocumentHandlerServiceImpl implements DocumentHandlerService {
     public void uploadExcel() {
-
+        System.out.println("文件上传，待实现 ......");
     }
 }
