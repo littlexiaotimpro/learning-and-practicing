@@ -27,7 +27,7 @@
             true:
                 使用默认的扫描内容,但可以指定并过滤掉部分扫描内容
     -->
-    <context:component-scan base-package="com.practice" use-default-filters="false">
+    <context:component-scan base-package="com.practice" use-default-filters="true">
         <!-- 组件扫描的过程中，添加需要被扫描的对象,必须在exclude-filter前定义 -->
         <context:include-filter type="annotation" expression=""/>
         <!-- 组件扫描的过程中，过滤掉不需要扫描的对象 -->
