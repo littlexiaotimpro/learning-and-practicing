@@ -1,6 +1,7 @@
 package com.practice.test;
 
 import com.practice.entity.BeanDemo;
+import com.practice.entity.BeanDemoScope;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -115,7 +116,7 @@ public class XMLBeanTest {
     }
 
     @Test
-    public void testBeanWired(){
+    public void testBeanWired() {
         // 1.通过资源文件获取实现，解析 XML 配置文件
         ApplicationContext context = new ClassPathXmlApplicationContext("bean-config.xml");
         // 2.调用getBean方法获取实例，demo为配置文件中配置的示例标识id
@@ -150,6 +151,88 @@ public class XMLBeanTest {
         BeanDemo listDemoUtil = context.getBean("listDemoUtil", BeanDemo.class);
         System.out.println(listDemoUtil.getConnects());
 
+    }
+
+    @Test
+    public void testFactoryBean() {
+        // 测试工厂Bean及普通Bean区别
+        // 普通的bean定义是XML中配置什么类型就接收什么类型
+        // 而通过实现FactoryBean<T> 接口可以达到配置实现类的bean，可以指定其返回值类型
+
+        // 1.通过资源文件获取实现，解析 XML 配置文件
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean-config.xml");
+        // 2.调用getBean方法获取实例，demo为配置文件中配置的示例标识id
+
+        // 需要注意，以普通对象创建的方式去接收工厂实现，会报错：BeanNotOfRequiredTypeException
+        // BeanFactoryDemo bean = context.getBean("demo", BeanFactoryDemo.class);
+        // Bean named 'demo' is expected to be of type 'com.practice.factory.BeanFactoryDemo' but was actually of type 'com.practice.entity.BeanDemo'
+
+        // FactoryBean指定泛型后需要使用指定的类型或其超类去接收
+        BeanDemo bean = context.getBean("demo", BeanDemo.class);
+        // class com.practice.entity.BeanDemo
+        // {demoCode=null, demoString=null, demoSize=null, demoBool=false, demoList=null, demoMap=null, demoArray=null, connect=null, connects=null}
+        System.out.println(bean);
+    }
+
+    @Test
+    public void testScope() {
+        // 1.通过资源文件获取实现，解析 XML 配置文件
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean-config.xml");
+        // 2.调用getBean方法获取实例，demo为配置文件中配置的示例标识id
+        BeanDemoScope beanScope = context.getBean("demoScope", BeanDemoScope.class);
+        System.out.println(beanScope);
+        BeanDemoScope beanScope1 = context.getBean("demoScope", BeanDemoScope.class);
+        System.out.println(beanScope1);
+
+         /*
+             单例对象：
+             <bean id="demoScope" class="com.practice.entity.BeanDemoScope" scope="singleton"/>
+             获取的两个实例的地址是同一个：构造器只执行了一次
+             调用无参构造器！
+             com.practice.entity.BeanDemoScope@770c2e6b
+             com.practice.entity.BeanDemoScope@770c2e6b
+
+             多例对象：
+             <bean id="demoScope" class="com.practice.entity.BeanDemoScope" scope="prototype"/>
+             获取的两个实例的地址不同：构造器执行了多次
+             调用无参构造器！
+             com.practice.entity.BeanDemoScope@18a70f16
+             调用无参构造器！
+             com.practice.entity.BeanDemoScope@62e136d3
+         */
+    }
+
+    @Test
+    public void testBeanLife() {
+        // 1.通过资源文件获取实现，解析 XML 配置文件
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean-config.xml");
+        // 2.调用getBean方法获取实例，demo为配置文件中配置的示例标识id
+        BeanDemoScope beanScope = context.getBean("demoScope", BeanDemoScope.class);
+        System.out.println("4.获取对象实例：" + beanScope);
+        beanScope.useInstance();
+
+        // 关闭容器，销毁实例对象
+        context.close();
+
+        /*
+            对象的生命周期：
+            1.调用无参构造器！
+            2.调用setter方法！
+            BeanDemoPostProcessor::postProcessBeforeInitialization，初始化前执行的方法：Bean => demoScope
+            3.调用实例初始化方法！
+            BeanDemoPostProcessor::postProcessAfterInitialization，初始化后执行的方法：Bean => demoScope
+            4.获取对象实例：com.practice.entity.BeanDemoScope@12d3a4e9
+            4.1.使用实例！code = setter
+            scope为singleton会输出以下语句，prototype不输出，容器中确实无法获取该实例
+            5.调用实例销毁的方法！
+
+            容器关闭后无法获取实例对象
+            java.lang.IllegalStateException: BeanFactory not initialized or already closed
+            - call 'refresh' before accessing beans via the ApplicationContext
+            想要重新启用容器：先执行刷新方法
+            context.refresh();
+            context.getBean("demoScope", BeanDemoScope.class).useInstance();
+        */
     }
 
 }

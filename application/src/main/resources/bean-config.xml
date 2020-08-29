@@ -110,4 +110,16 @@
     <!--        <ref bean="linkConnect"/>-->
     <!--        <ref bean="outConnect"/>-->
     <!--    </util:list>-->
+
+    <!-- 8.FactoryBean -->
+    <!-- BeanFactoryDemo 为FactoryBean<BeanDemo>的实现，此处创建的应该是BeanDemo的实例 -->
+    <!--    <bean id="demo" class="com.practice.factory.BeanFactoryDemo"/>-->
+
+    <!-- 9.bean的作用域及生命周期 scope属性指定作用域，单例或多例-->
+    <!-- scope: singleton 单例, prototype 多例 -->
+    <bean id="demoScope" class="com.practice.entity.BeanDemoScope" scope="singleton" init-method="initInstance" destroy-method="destroyInstance">
+        <property name="code" value="setter"/>
+    </bean>
+    <!-- 创建Bean处理器对象，在对象创建的生命周期过程中，都会执行如下实现定义的初始化前后方法 -->
+    <bean id="beanDemoPostProcessor" class="com.practice.processor.BeanDemoPostProcessor"/>
 </beans>
