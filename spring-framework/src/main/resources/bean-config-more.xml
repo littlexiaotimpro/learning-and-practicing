@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-                    http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+                    http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+                    http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- bean definitions here -->
     <!-- 标签常用属性：
@@ -16,9 +18,9 @@
             byType: 依据类型注入，匹配与属性值类型相同的对象进行注入
             需要注意：byType，如果定义两个属性相同类型的对象，通过类型匹配是会报错：UnsatisfiedDependencyException，NoUniqueBeanDefinitionException
     -->
-        <bean id="demo" class="com.practice.entity.BeanDemoXML" autowire="byType"/>
-        <bean id="connect" class="com.practice.entity.BeanDemoConnect"/>
-<!--        <bean id="demoConnect" class="com.practice.entity.BeanDemoConnect"/>-->
+    <!--        <bean id="demo" class="com.practice.entity.BeanDemoXML" autowire="byType"/>-->
+    <!--        <bean id="connect" class="com.practice.entity.BeanDemoConnect"/>-->
+    <!--        <bean id="demoConnect" class="com.practice.entity.BeanDemoConnect"/>-->
 
     <!-- 2.Spring的指定包路径下的注解扫描，会创建所有添加了@Component注解的类的实例 -->
     <!-- use-default-filters:
@@ -33,5 +35,8 @@
         <!-- 组件扫描的过程中，过滤掉不需要扫描的对象 -->
         <context:exclude-filter type="annotation" expression=""/>
     </context:component-scan>
+
+    <!-- 开启AOP自动代理 -->
+    <aop:aspectj-autoproxy/>
 
 </beans>
