@@ -29,6 +29,11 @@ public class JDKProxy {
 
         TargetProxy targetProxy = (TargetProxy) Proxy.newProxyInstance(getClass().getClassLoader(), interfaces, new InvocationHandler() {
 
+            /**
+             * @param proxy  代理对象
+             * @param method 代理方法
+             * @param args   方法参数列表
+             */
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("JDK 扩展代理前置逻辑实现！");

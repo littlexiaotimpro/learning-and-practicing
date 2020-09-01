@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
  */
 @Service("documentInstance")
 public class DocumentHandlerServiceImpl implements DocumentHandlerService {
-    public void uploadExcel() {
+    public String uploadExcel() {
         System.out.println("文件上传，待实现 ......");
+        return "res";
     }
 }

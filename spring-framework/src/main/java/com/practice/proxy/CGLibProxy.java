@@ -20,7 +20,7 @@ public class CGLibProxy {
              * @param o           代理对象
              * @param method      代理方法
              * @param objects     方法参数列表
-             * @param methodProxy 方法代理
+             * @param methodProxy 方法代理对象
              */
             @Override
             public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {

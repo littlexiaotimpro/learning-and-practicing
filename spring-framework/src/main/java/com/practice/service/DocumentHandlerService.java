@@ -8,5 +8,5 @@ package com.practice.service;
  */
 public interface DocumentHandlerService {
 
-    void uploadExcel();
+    String uploadExcel();
 }
