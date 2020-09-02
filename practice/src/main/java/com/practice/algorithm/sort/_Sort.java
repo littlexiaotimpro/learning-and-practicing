@@ -184,7 +184,7 @@ public class _Sort {
         // 将元素值作为索引存入临时数组
         int[] tran = new int[max - min + 1];
         for (int i = 0; i < n; i++) {
-            tran[source[i]] = ++tran[source[i]];
+            tran[source[i]-min] = ++tran[source[i]-min];
         }
         // 将临时数组中个元素的值返回至原数组，其中辅助数组的值表示索引元素出现的次数
         int k = 0;
@@ -193,7 +193,7 @@ public class _Sort {
                 int index = k + tran[i];
                 // 按元素统计顺序逆序插入，保证排序算法的稳定性
                 for (int j = 0; j < tran[i]; j++) {
-                    source[--index] = i;
+                    source[--index] = i+min;
                     k++;
                 }
             }
@@ -272,7 +272,7 @@ public class _Sort {
         System.out.println("快速排序 => " + Arrays.toString(source));
 
         //6.计数排序
-        source = new int[]{5, 9, 3, 2, 4, 9, 1, 0, 0, 1, 34, 6};
+        source = new int[]{5, 9, 3, 2, 4, 9, 1, 1, 34, 6};
         countingSort(source, source.length);
         System.out.println("计数排序 => " + Arrays.toString(source));
         //7.桶排序
