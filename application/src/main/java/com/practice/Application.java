@@ -14,6 +14,6 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println("程序启动...");
-        SpringApplication.run(Application.class,args);
+        SpringApplication.run(Application.class, args);
     }
 }
