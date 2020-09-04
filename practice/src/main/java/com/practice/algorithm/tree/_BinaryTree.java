@@ -49,25 +49,31 @@ public class _BinaryTree {
         buildNode(tree, rightIndex, currentNode.right);
     }
 
-    /**
-     * 遍历二叉树
-     * @param root 根节点
-     */
-    private static void traverseTree(Node root) {
-        Node curNode = root;
-        while (curNode != null) {
-            System.out.println(root.value);
-            curNode = root.left;
-        }
-    }
-
     public static void main(String[] args) {
         int[] tree = {4, 2, 5, 6, 1, 6, 3, 5};
         Node root = buildTree(tree);
         System.out.println(Arrays.toString(tree));
+        // 递归遍历
+        recursionTraverseTree(root);
+    }
+
+    /**
+     * 递归遍历
+     */
+    private static void recursionTraverseTree(Node root){
         traverseTree(root);
     }
 
+    /**
+     * 递归前序遍历
+     */
+    private static void traverseTree(Node root) {
+        if (root != null){
+            System.out.print(root.value + " ");
+            traverseTree(root.left);
+            traverseTree(root.right);
+        }
+    }
 
     /**
      * 二叉树的节点
