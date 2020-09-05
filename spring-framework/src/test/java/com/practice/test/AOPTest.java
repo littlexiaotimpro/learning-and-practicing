@@ -17,6 +17,13 @@ public class AOPTest {
     }
 
     @Test
+    public void testXMLAop(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean-config-aop.xml");
+        DocumentHandlerService documentInstance = context.getBean("documentInstance", DocumentHandlerService.class);
+        documentInstance.uploadExcel();
+    }
+
+    @Test
     public void testAnnotationAop(){
         ApplicationContext context = new AnnotationConfigApplicationContext(ComponentScanConfig.class);
         DocumentHandlerService documentInstance = context.getBean("documentInstance", DocumentHandlerService.class);
