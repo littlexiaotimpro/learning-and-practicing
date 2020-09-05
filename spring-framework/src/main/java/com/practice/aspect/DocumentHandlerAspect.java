@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-//@EnableAspectJAutoProxy //注解的方式开启AOP自动代理
 public class DocumentHandlerAspect {
 
     @Pointcut(value = "execution(* com.practice.service.impl.DocumentHandlerServiceImpl.uploadExcel(..))")
