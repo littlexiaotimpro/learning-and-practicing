@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class DocumentHandlerServiceImpl implements DocumentHandlerService {
     public String uploadExcel() {
         System.out.println("文件上传，待实现 ......");
+        int a = 10/0;
         return "res";
     }
 }

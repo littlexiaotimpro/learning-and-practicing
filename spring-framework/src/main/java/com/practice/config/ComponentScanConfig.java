@@ -2,16 +2,14 @@ package com.practice.config;
 
 import com.practice.entity.BeanDemoAnnotation;
 import com.practice.entity.BeanDemoConnect;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 
 /**
  * 通过注解的方式配置组件扫描
  */
 @Configuration
 @ComponentScan(basePackages = "com.practice")
+@EnableAspectJAutoProxy //注解的方式开启AOP自动代理
 public class ComponentScanConfig {
 
     // @Bean 等同于XML中配置<bean id="" class=""/>，name/value为配置的实例名，如同id
