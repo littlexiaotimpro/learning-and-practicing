@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>test-jdbc</artifactId>
+    <artifactId>spring-framework-jdbc</artifactId>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc -->
