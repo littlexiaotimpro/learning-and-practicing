@@ -1,6 +1,13 @@
 package com.practice.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class DemoBean {
+
+    @Autowired
+    private DemoBeanC demoBeanC;
+    @Autowired
+    private DemoBeanD demoBeanD;
 
     /**
      * 初始化方法
