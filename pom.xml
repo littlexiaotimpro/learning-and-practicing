@@ -11,8 +11,11 @@
     <modules>
         <module>practice</module>
         <module>application</module>
-        <module>test-jdbc</module>
         <module>spring-boot-start</module>
+        <module>spring-framework</module>
+        <module>spring-framework-jdbc</module>
+        <module>spring-framework-annotation</module>
+        <module>spring-framework-mybatis</module>
     </modules>
 
     <parent>
