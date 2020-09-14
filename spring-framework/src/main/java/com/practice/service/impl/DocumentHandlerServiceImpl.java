@@ -13,7 +13,12 @@ import org.springframework.stereotype.Service;
 public class DocumentHandlerServiceImpl implements DocumentHandlerService {
     public String uploadExcel() {
         System.out.println("文件上传，待实现 ......");
-        int a = 10/0;
+        // 对于异常通知：若catch没有抛出其他异常信息，那么不会执行异常通知方法
+//        try {
+//            int a = 10 / 0;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         return "res";
     }
 }
