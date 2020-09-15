@@ -1,5 +1,7 @@
 package com.practice.test.jdbc.service;
 
+import java.sql.SQLException;
+
 /**
  * @author XiaoSi
  * @className AbstractJDBCTemplate
@@ -13,14 +15,14 @@ public abstract class AbstractJDBCTemplate {
      * TODO 单量，及批量插入
      * @return 操作结果
      */
-    public abstract int insert(String sql,String ...args);
+    public abstract int insert(String sql,String ...args) throws SQLException;
 
     /**
      * 删除数据
      * TODO 单量，及批量删除
      * @return 操作结果
      */
-    public abstract int delete();
+    public abstract int delete(String sql,String ...args) throws SQLException;
 
     /**
      * 修改数据

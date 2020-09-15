@@ -3,7 +3,9 @@ package com.practice.test.jdbc.service;
 import com.practice.test.jdbc.JDBCDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
 import java.lang.reflect.Field;
 import java.sql.*;
 
@@ -18,9 +20,11 @@ public class JDBCTemplate extends AbstractJDBCTemplate {
 
     @Autowired
     private JDBCDriver driver;
+    @Autowired
+    private DataSource dataSource;
 
     @Override
-    public int insert(String sql, String ...args) {
+    public int insert(String sql, String ...args) throws SQLException {
         Connection connection = driver.createConnection();
         PreparedStatement preparedStatement = null;
         int res = 0;
@@ -35,19 +39,11 @@ public class JDBCTemplate extends AbstractJDBCTemplate {
             throw new SQLException("事务管理回滚");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            try {
-                // 若存在异常，则事务回滚
-                connection.rollback();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            // 若存在异常，则事务回滚
+            connection.rollback();
         } finally {
-            try {
-                // 手动提交事务
-                connection.commit();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            // 手动提交事务
+            connection.commit();
             driver.deployPreparedStatement(preparedStatement);
             driver.deployConnection(connection);
         }
@@ -55,8 +51,17 @@ public class JDBCTemplate extends AbstractJDBCTemplate {
     }
 
     @Override
-    public int delete() {
-        return 0;
+    @Transactional
+    public int delete(String sql,String ...args) throws SQLException {
+        int res = 0;
+        Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        for (int i = 0; i < args.length; i++) {
+            preparedStatement.setString(i + 1, args[i]);
+        }
+        res = preparedStatement.executeUpdate();
+//        int a = 10/0;
+        return res;
     }
 
     @Override
