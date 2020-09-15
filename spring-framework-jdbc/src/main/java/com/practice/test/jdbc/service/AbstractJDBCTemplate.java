@@ -13,7 +13,7 @@ public abstract class AbstractJDBCTemplate {
      * TODO 单量，及批量插入
      * @return 操作结果
      */
-    public abstract int insert();
+    public abstract int insert(String sql,String ...args);
 
     /**
      * 删除数据

@@ -4,10 +4,8 @@ import com.practice.test.jdbc.JDBCDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.lang.reflect.Field;
+import java.sql.*;
 
 /**
  * @author XiaoSi
@@ -22,8 +20,38 @@ public class JDBCTemplate extends AbstractJDBCTemplate {
     private JDBCDriver driver;
 
     @Override
-    public int insert() {
-        return 0;
+    public int insert(String sql, String ...args) {
+        Connection connection = driver.createConnection();
+        PreparedStatement preparedStatement = null;
+        int res = 0;
+        try {
+            // 关闭自动提交
+            connection.setAutoCommit(false);
+            preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                preparedStatement.setString(i + 1, args[i]);
+            }
+            res = preparedStatement.executeUpdate();
+            throw new SQLException("事务管理回滚");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            try {
+                // 若存在异常，则事务回滚
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } finally {
+            try {
+                // 手动提交事务
+                connection.commit();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            driver.deployPreparedStatement(preparedStatement);
+            driver.deployConnection(connection);
+        }
+        return res;
     }
 
     @Override
@@ -41,22 +69,27 @@ public class JDBCTemplate extends AbstractJDBCTemplate {
         Connection connection = driver.createConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        T t = null;
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, args[0]);
             resultSet = preparedStatement.executeQuery();
+            t = tClass.newInstance();
             while (resultSet.next()) {
-                for (int i=1;i <= resultSet.getMetaData().getColumnCount();i++){
-                    System.out.println(resultSet.getString(i));
+                ResultSetMetaData metaData = resultSet.getMetaData();
+                for (int i = 1; i <= metaData.getColumnCount(); i++){
+                    Field field = tClass.getDeclaredField(metaData.getColumnName(i));
+                    field.setAccessible(true);
+                    field.set(t, resultSet.getString(i));
                 }
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException | IllegalAccessException | InstantiationException | NoSuchFieldException throwables) {
             throwables.printStackTrace();
         } finally {
             driver.deployResultSet(resultSet);
             driver.deployPreparedStatement(preparedStatement);
             driver.deployConnection(connection);
         }
-        return null;
+        return t;
     }
 }

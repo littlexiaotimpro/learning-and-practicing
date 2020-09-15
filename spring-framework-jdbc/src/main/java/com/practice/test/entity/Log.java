@@ -16,6 +16,5 @@ public class Log {
     private String operator;
     private String operation;
     private String content;
-    private Date createtime;
-
+    private String createtime;
 }
