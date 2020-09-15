@@ -46,7 +46,9 @@ public class JDBCTemplate extends AbstractJDBCTemplate {
             preparedStatement.setString(1, args[0]);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(resultSet.getString(2));
+                for (int i=1;i <= resultSet.getMetaData().getColumnCount();i++){
+                    System.out.println(resultSet.getString(i));
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
