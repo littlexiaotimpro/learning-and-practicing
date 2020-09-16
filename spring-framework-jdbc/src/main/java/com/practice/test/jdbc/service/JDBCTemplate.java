@@ -52,7 +52,7 @@ public class JDBCTemplate extends AbstractJDBCTemplate {
 
     @Override
     @Transactional
-    public int delete(String sql,String ...args) throws SQLException {
+    public int delete(String sql,String ...args) throws Exception {
         int res = 0;
         Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class JDBCTemplate extends AbstractJDBCTemplate {
             preparedStatement.setString(i + 1, args[i]);
         }
         res = preparedStatement.executeUpdate();
-//        int a = 10/0;
+        int a = 10/0;
         return res;
     }
 

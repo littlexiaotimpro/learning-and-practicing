@@ -33,11 +33,11 @@ public class JDBCDriverTest {
     }
 
     @Test
-    public void testDelete() throws SQLException {
+    public void testDelete() throws Exception {
         ApplicationContext context = new AnnotationConfigApplicationContext(ComponentScanConfig.class);
         JDBCTemplate bean = context.getBean(JDBCTemplate.class);
         String sql = "delete from tb_log where logNo = ?";
-        int delete = bean.delete(sql, "719");
+        int delete = bean.delete(sql, "716");
         System.out.println(delete);
     }
 

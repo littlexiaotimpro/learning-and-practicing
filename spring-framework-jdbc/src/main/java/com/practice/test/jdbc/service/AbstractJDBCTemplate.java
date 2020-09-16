@@ -22,7 +22,7 @@ public abstract class AbstractJDBCTemplate {
      * TODO 单量，及批量删除
      * @return 操作结果
      */
-    public abstract int delete(String sql,String ...args) throws SQLException;
+    public abstract int delete(String sql,String ...args) throws Exception;
 
     /**
      * 修改数据
