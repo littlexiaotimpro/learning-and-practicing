@@ -1,6 +1,6 @@
-package com.practice.test.custom;
+package com.practice.test.jdbc.custom;
 
-import com.practice.test.jdbc.config.JDBCConfig;
+import com.practice.test.common.JDBCConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.sql.DataSource;
@@ -22,7 +22,7 @@ public class CustomDataSource implements DataSource {
     @Override
     public Connection getConnection() throws SQLException {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(config.getDriver());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -34,7 +34,7 @@ public class CustomDataSource implements DataSource {
     @Override
     public Connection getConnection(String username, String password) throws SQLException {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(config.getDriver());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

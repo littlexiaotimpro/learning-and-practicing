@@ -1,9 +1,7 @@
 package com.practice.test.jdbc;
 
-import com.practice.test.jdbc.config.JDBCConfig;
+import com.practice.test.common.JDBCConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -26,7 +24,7 @@ public class JDBCDriver {
     public Connection createConnection(){
         Connection conn = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(config.getDriver());
             conn = DriverManager.getConnection(config.getUrl(), config.getUsername(), config.getPassword());
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

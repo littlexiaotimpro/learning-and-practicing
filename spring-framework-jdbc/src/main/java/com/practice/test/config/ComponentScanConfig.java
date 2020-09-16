@@ -1,6 +1,6 @@
 package com.practice.test.config;
 
-import com.practice.test.custom.CustomDataSource;
+import com.practice.test.jdbc.custom.CustomDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
