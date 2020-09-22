@@ -18,11 +18,14 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan(basePackages = {"com.practice"})
 @MapperScan(basePackages = {"com.practice.test.dao"})
+/*
+ * 测试类中需要注入相关属性
+ */
 @PropertySource(value = {"classpath:/application.properties"})
 @EnableConfigurationProperties({MybatisProperties.class})
 public class AutoConfiguration {
 
-    @Bean("druidDataSource")
+    @Bean
     public DataSource dataSource(JDBCConfig jdbcConfig){
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(jdbcConfig.getDriver());
@@ -32,11 +35,27 @@ public class AutoConfiguration {
         return dataSource;
     }
 
+    /**
+     * 使用自动配置（需要配置数据源）：
+     * {@link org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration#sqlSessionFactory(DataSource)}
+     * 在上述的 MyBatis 自动配置类中，如下：
+     * <code>
+     *   // @Bean 注入一个 Bean
+     *   // @ConditionalOnMissingBean 使用此注解修饰后，若当前容器中存在SqlSessionFactory对应的实例，则此方法不执行
+     *   public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+     *       // ...
+     *   }
+     * </code>
+     */
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource,MybatisProperties mybatisProperties){
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
-        // sqlSessionFactoryBean.setMapperLocations(mybatisProperties.resolveMapperLocations());
+        // 默认的解析路径是和 MapperScan 扫描路径对应的DAO的路径，如：
+        // com.practice.test.dao.LogBeanDAO.java，对应的xml文件路径为：classpath:com/practice/test/dao/LogBeanDAO.xml
+        // 如果需要启动资源配置文件中配置的 mybatis的本地资源路径，需要如下解析方式
+        sqlSessionFactoryBean.setMapperLocations(mybatisProperties.resolveMapperLocations());
+        sqlSessionFactoryBean.setTypeAliasesPackage(mybatisProperties.getTypeAliasesPackage());
         return sqlSessionFactoryBean;
     }
 
