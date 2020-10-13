@@ -58,6 +58,32 @@ public class MyBatisTest {
     }
 
     @Test
+    public void testIsolationReadUncommitted(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AutoConfiguration.class);
+        LogService logService = context.getBean(LogService.class);
+        /*
+         * 1.READ_UNCOMMITTED - 读未提交
+         * 脏读：
+         * 在cmd模式下：执行如下操作
+         * start transaction;
+         * update tb_log set operator = 'test_read_uncommitted' where logno =:logNo;
+         * 在不提交的情况下，此时读取到的值正好为 test_read_uncommitted
+         * 以这个值进行后续逻辑操作，若此时cmd的事务进行回滚，那么获取的值就是无效数据，而执行过的逻辑产生了错误结果
+         *
+         * 其他情况无法直接演示
+         * 不可重复读：
+         * 事务一读取初始值后，事务二进行数据修改，此时事务一再次读取数据，得到了修改后的数据，前后不一致
+         *
+         * 幻读：
+         * 事务一读取初始范围值后，事务二进行数据新增，此时事务一再次读取相同范围的数据，其中出现了一些原来没有的数据
+         */
+        String operator = logService.selectOperator(logNO);
+        System.out.println(operator);
+        // 关闭容器
+        context.close();
+    }
+
+    @Test
     public void test() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AutoConfiguration.class);
         LogService logService = context.getBean(LogService.class);

@@ -5,6 +5,7 @@ import com.practice.test.entity.LogBean;
 import com.practice.test.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileInputStream;
@@ -48,6 +49,12 @@ public class LogServiceImpl implements LogService {
     @Override
     public int insertOne(LogBean logBean) {
         return logBeanDAO.insertOne(logBean);
+    }
+
+    @Override
+    @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
+    public String selectOperator(String logNo) {
+        return logBeanDAO.findOperatorByKey(logNo);
     }
 
     @Override

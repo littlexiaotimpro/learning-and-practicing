@@ -13,10 +13,12 @@ public interface LogService {
 
     String checkReadOnly(String logNo);
 
-    int insertOne(LogBean logBean);
-
     int checkRollBackFor(String logNo,String operator) throws FileNotFoundException;
 
     int checkNoRollBackFor(String logNo,String operator) throws FileNotFoundException;
+
+    int insertOne(LogBean logBean);
+
+    String selectOperator(String logNo);
 
 }
