@@ -93,7 +93,10 @@
     <select id="findAll" resultMap="BaseResultMap">
         select * from tb_log order by createtime;
     </select>
-    <insert id="saveLog" parameterType="com.practice.test.entity.LogBean">
+    <select id="findOperatorByKey" parameterType="java.lang.String" resultType="java.lang.String">
+        select operator from tb_log where logno = #{logNo,jdbcType=VARCHAR};
+    </select>
+    <insert id="insertOne" parameterType="com.practice.test.entity.LogBean">
         insert into tb_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="logBean.operator != null">
