@@ -10,6 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -24,6 +27,8 @@ import javax.sql.DataSource;
  */
 @PropertySource(value = {"classpath:/application.properties"})
 @EnableConfigurationProperties({MybatisProperties.class})
+// 启用事务管理
+@EnableTransactionManagement
 // 启用自动配置，会加载很多无用的配置
 //@EnableAutoConfiguration
 public class AutoConfiguration {
@@ -66,6 +71,14 @@ public class AutoConfiguration {
         //sqlSessionFactoryBean.setMapperLocations(mybatisProperties.resolveMapperLocations());
         //sqlSessionFactoryBean.setTypeAliasesPackage(mybatisProperties.getTypeAliasesPackage());
         return sqlSessionFactoryBean;
+    }
+
+    /**
+     * 创建事务管理器对象
+     */
+    @Bean
+    public PlatformTransactionManager transactionManager(DataSource druidDataSource){
+        return new DataSourceTransactionManager(druidDataSource);
     }
 
 }

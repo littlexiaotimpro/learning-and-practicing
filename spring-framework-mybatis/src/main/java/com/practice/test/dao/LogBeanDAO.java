@@ -22,6 +22,11 @@ public interface LogBeanDAO extends MyBatisBaseDao<LogBean, Integer>{
     /**
      * 插入一条日志数据，验证事务属性
      */
-    int insertOne(LogBean logBean);
+    int insertOne(@Param("logBean") LogBean logBean);
+
+    /**
+     * 依据主键修改数据
+     */
+    int updateOne(@Param("logNo") String logNo, String operator);
 
 }

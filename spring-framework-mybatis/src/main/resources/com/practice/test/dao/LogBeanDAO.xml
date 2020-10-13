@@ -121,4 +121,7 @@
             </if>
         </trim>
     </insert>
+    <update id="updateOne" parameterType="java.lang.String">
+        update tb_log set operator=#{operator, jdbcType=VARCHAR} where logno = #{logNo, jdbcType=VARCHAR}
+    </update>
 </mapper>
