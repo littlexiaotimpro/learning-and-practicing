@@ -9,6 +9,7 @@
                     http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
                     http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd">
     <!-- 基于XML配置事务管理 -->
+    <context:component-scan base-package="com.practice.test"/>
     <context:property-placeholder location="classpath:/application.properties" />
 
     <!-- 1.配置数据源 -->
