@@ -21,4 +21,10 @@ public interface LogService {
 
     String selectOperator(String logNo);
 
+    void checkPropagation();
+
+    void transactionOne(String logNo,String operator);
+
+    void transactionTwo(String logNo,String operator);
+
 }

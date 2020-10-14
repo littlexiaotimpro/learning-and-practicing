@@ -1,14 +1,12 @@
 package com.practice.test;
 
 import com.practice.test.config.AutoConfiguration;
-import com.practice.test.dao.LogBeanDAO;
 import com.practice.test.entity.LogBean;
 import com.practice.test.service.LogService;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 
 public class MyBatisTest {
 

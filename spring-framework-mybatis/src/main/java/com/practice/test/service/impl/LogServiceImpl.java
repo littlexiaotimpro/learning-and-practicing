@@ -6,6 +6,7 @@ import com.practice.test.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileInputStream;
@@ -69,9 +70,36 @@ public class LogServiceImpl implements LogService {
     @Override
     @Transactional(noRollbackFor = {ArithmeticException.class})
 //    @Transactional(noRollbackForClassName = {"java.lang.ArithmeticException"})
-    public int checkNoRollBackFor(String logNo, String operator) throws FileNotFoundException {
+    public int checkNoRollBackFor(String logNo, String operator) {
         int i = logBeanDAO.updateOne(logNo, operator);
         int a = 10/0;
         return i;
+    }
+
+    //----------------事务传播行为---------------------
+
+    /**
+     * 将多个事务操作直接在本类方法中调用
+     */
+    @Override
+    @Transactional
+    public void checkPropagation() {
+        // 嵌套事务一
+        transactionOne("720", "720-test-requires-new");
+        // 嵌套事务二
+        transactionTwo("721", "721-test-requires-new");
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void transactionOne(String logNo, String operator){
+        logBeanDAO.updateOne(logNo,operator);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void transactionTwo(String logNo, String operator){
+        logBeanDAO.updateOne(logNo,operator);
+        int i = 1/0;
     }
 }
