@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/data/jpa
+                           https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                           http://www.springframework.org/schema/context
+                           https://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx
+                           https://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 基于XML配置事务管理 -->
+    <context:component-scan base-package="com.practice.test"/>
+    <context:property-placeholder location="classpath:/application.properties"/>
+
+    <!-- 1.配置数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClass" value="${spring.datasource.driver}"/>
+        <property name="jdbcUrl" value="${spring.datasource.url}"/>
+        <property name="username" value="${spring.datasource.username}"/>
+        <property name="password" value="${spring.datasource.password}"/>
+    </bean>
+
+    <!--
+        基于XML的 JPA 配置
+        entity-manager-factory-ref：存在多个EntityManagerFactory的实例bean时配置，
+                                    若只存在一个该工厂Bean，则默认使用容器中的该对象（可以不显式配置）
+        transaction-manager-ref：在存在多事务管理器，或多EntityManagerFactory实例的时候显式配置，
+                                 只有事务管理器时，默认使用当前容器中的事务管理器（可以不显式配置）
+        需要注意：如果未定义显式的transaction-manager-ref，Spring Data JPA要求提供一个名为transactionManager
+        的PlatformTransactionManager 实例bean，此处默认不配置
+    -->
+    <jpa:repositories base-package="com.practice.test.repositories"/>
+
+    <!-- 配置事务管理 -->
+    <!-- 1.声明事务管理器  -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 2.开启基于注解的事务管理 -->
+    <tx:annotation-driven/>
+
+</beans>

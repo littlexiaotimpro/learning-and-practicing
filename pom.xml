@@ -16,6 +16,7 @@
         <module>spring-framework-jdbc</module>
         <module>spring-framework-annotation</module>
         <module>spring-framework-mybatis</module>
+        <module>spring-framework-jpa</module>
     </modules>
 
     <parent>
