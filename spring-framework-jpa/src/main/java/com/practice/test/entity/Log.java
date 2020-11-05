@@ -1,6 +1,7 @@
 package com.practice.test.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_log")
 @Data
+@Accessors(chain = true)
 public class Log {
     @Id
     @Column(name = "logNo")

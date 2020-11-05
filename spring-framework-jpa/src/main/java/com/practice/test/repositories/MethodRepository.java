@@ -1,5 +1,6 @@
 package com.practice.test.repositories;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
 
@@ -10,5 +11,11 @@ import java.util.Optional;
 public interface MethodRepository<T,ID> extends Repository<T, ID> {
 
     Optional<T> findById(ID id);
+
+    @Modifying
+    <S extends T> S save(S entity);
+
+    @Modifying
+    void delete(T entity);
 
 }
