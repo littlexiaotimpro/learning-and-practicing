@@ -16,10 +16,10 @@ public interface SubMethodRepository extends MethodRepository<Log, String> {
 
     /**
      * {@link Query}
-     * 使用 JPA 支持的语法
+     * 使用 JPA 支持的语法，from 之后接着的时数据表映射的实体名
      * 需要注意，使用原生SQL时，需要设置 nativeQuery 属性值为 true
      */
-    @Query(value = "select * from tb_log t where t.content like %?1%", nativeQuery = true)
+    @Query(value = "select t from Log t where t.content like %?1%")
     List<Log> queryLogs(String content);
 
     @Query(value = "select * from tb_log where operation = ?1 limit 3", nativeQuery = true)
