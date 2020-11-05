@@ -14,8 +14,8 @@
 
     <!-- 1.配置数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-        <property name="driverClass" value="${spring.datasource.driver}"/>
-        <property name="jdbcUrl" value="${spring.datasource.url}"/>
+        <property name="driverClassName" value="${spring.datasource.driver}"/>
+        <property name="url" value="${spring.datasource.url}"/>
         <property name="username" value="${spring.datasource.username}"/>
         <property name="password" value="${spring.datasource.password}"/>
     </bean>

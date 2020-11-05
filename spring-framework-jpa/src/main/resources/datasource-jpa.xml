@@ -19,8 +19,8 @@
 
     <!-- 1.配置数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-        <property name="driverClass" value="${spring.datasource.driver}"/>
-        <property name="jdbcUrl" value="${spring.datasource.url}"/>
+        <property name="driverClassName" value="${spring.datasource.driver}"/>
+        <property name="url" value="${spring.datasource.url}"/>
         <property name="username" value="${spring.datasource.username}"/>
         <property name="password" value="${spring.datasource.password}"/>
     </bean>
@@ -36,10 +36,34 @@
     -->
     <jpa:repositories base-package="com.practice.test.repositories"/>
 
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="jpaVendorAdapter">
+            <bean id="vendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl">
+                    <value>true</value>
+                </property>
+            </bean>
+        </property>
+        <property name="packagesToScan" value="com.practice.test.entity"/>
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 指定JPA属性；如Hibernate中指定是否显示SQL的是否显示、方言等 -->
+        <!--<property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+            </props>
+        </property>-->
+    </bean>
+
     <!-- 配置事务管理 -->
     <!-- 1.声明事务管理器  -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="dataSource" ref="dataSource"/>
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
     <!-- 2.开启基于注解的事务管理 -->
     <tx:annotation-driven/>
