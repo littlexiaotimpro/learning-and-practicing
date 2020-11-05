@@ -7,6 +7,8 @@ import com.practice.test.repositories.DemoQueryRepository;
 import com.practice.test.repositories.SubMethodRepository;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -36,8 +38,28 @@ public class JPAAnnotationTest {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutoConfiguration.class);
         SubMethodRepository queryRepository = applicationContext.getBean(SubMethodRepository.class);
         Log log = queryRepository.findById("747").orElse(new Log());
-        List<Log> logs = queryRepository.findByOperator("1");
+        List<Log> logs = queryRepository.findByOperator("visitor");
         System.out.println(log);
+        System.out.println(logs.size());
+        applicationContext.close();
+    }
+
+    @Test
+    public void testSubMethod(){
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutoConfiguration.class);
+        SubMethodRepository queryRepository = applicationContext.getBean(SubMethodRepository.class);
+        List<Log> pages = queryRepository.findByOperation("登录", PageRequest.of(1, 5));
+        System.out.println(pages.size());
+        List<Log> logs = queryRepository.selectByLimitOperation("新增");
+        System.out.println(logs.size());
+        applicationContext.close();
+    }
+
+    @Test
+    public void testQuery(){
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutoConfiguration.class);
+        SubMethodRepository queryRepository = applicationContext.getBean(SubMethodRepository.class);
+        List<Log> logs = queryRepository.queryLogs("visitor");
         System.out.println(logs.size());
         applicationContext.close();
     }

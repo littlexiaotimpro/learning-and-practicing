@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan(basePackages = {"com.practice.test"})
 // EnableJpaRepositories的basePackages，默认扫描当前类所在的包下的组件
-@EnableJpaRepositories(basePackages = {"com.practice.test"})
+@EnableJpaRepositories(basePackages = {"com.practice.test.repositories"})
 @EnableTransactionManagement
 @PropertySource(value = {"classpath:/application.properties"})
 public class AutoConfiguration implements EmbeddedValueResolverAware {
@@ -61,7 +61,7 @@ public class AutoConfiguration implements EmbeddedValueResolverAware {
         vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.practice.test");
+        factory.setPackagesToScan("com.practice.test.entity");
         factory.setDataSource(dataSource());
         return factory;
     }
