@@ -54,51 +54,10 @@ public class _BinaryTree {
         Node root = buildTree(tree);
         System.out.println(Arrays.toString(tree));
         // 递归遍历
-        recursionTraverseTree(root);
-    }
-
-    /**
-     * 递归遍历
-     */
-    private static void recursionTraverseTree(Node root){
-        traversePreviousTree(root);
-        System.out.println();
-        traverseCenterTree(root);
-        System.out.println();
-        traverseAfterTree(root);
-    }
-
-    /**
-     * 递归前序遍历
-     */
-    private static void traversePreviousTree(Node root) {
-        if (root != null){
-            System.out.print(root.value + " ");
-            traversePreviousTree(root.left);
-            traversePreviousTree(root.right);
-        }
-    }
-
-    /**
-     * 递归中序遍历
-     */
-    private static void traverseCenterTree(Node root) {
-        if (root != null){
-            traverseCenterTree(root.left);
-            System.out.print(root.value + " ");
-            traverseCenterTree(root.right);
-        }
-    }
-
-    /**
-     * 递归后序遍历
-     */
-    private static void traverseAfterTree(Node root) {
-        if (root != null){
-            traverseAfterTree(root.left);
-            traverseAfterTree(root.right);
-            System.out.print(root.value + " ");
-        }
+        Recursion recursion = new Recursion();
+        recursion.recursionTraverseTree(root);
+        // 循环遍历
+        Traverse traverse = new Traverse();
     }
 
     /**
@@ -115,5 +74,60 @@ public class _BinaryTree {
             this.left = null;
             this.right = null;
         }
+    }
+
+    /**
+     * 递归遍历
+     */
+    private static class Recursion {
+
+        public void recursionTraverseTree(Node root) {
+            traversePreviousTree(root);
+            System.out.println();
+            traverseCenterTree(root);
+            System.out.println();
+            traverseAfterTree(root);
+            System.out.println();
+        }
+
+        /**
+         * 递归前序遍历
+         */
+        public void traversePreviousTree(Node root) {
+            if (root != null) {
+                System.out.print(root.value + " ");
+                traversePreviousTree(root.left);
+                traversePreviousTree(root.right);
+            }
+        }
+
+        /**
+         * 递归中序遍历
+         */
+        public void traverseCenterTree(Node root) {
+            if (root != null) {
+                traverseCenterTree(root.left);
+                System.out.print(root.value + " ");
+                traverseCenterTree(root.right);
+            }
+        }
+
+        /**
+         * 递归后序遍历
+         */
+        public void traverseAfterTree(Node root) {
+            if (root != null) {
+                traverseAfterTree(root.left);
+                traverseAfterTree(root.right);
+                System.out.print(root.value + " ");
+            }
+        }
+    }
+
+    /**
+     * 循环遍历
+     */
+    private static class Traverse{
+
     }
 }
