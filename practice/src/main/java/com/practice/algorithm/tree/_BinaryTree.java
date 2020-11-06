@@ -61,17 +61,43 @@ public class _BinaryTree {
      * 递归遍历
      */
     private static void recursionTraverseTree(Node root){
-        traverseTree(root);
+        traversePreviousTree(root);
+        System.out.println();
+        traverseCenterTree(root);
+        System.out.println();
+        traverseAfterTree(root);
     }
 
     /**
      * 递归前序遍历
      */
-    private static void traverseTree(Node root) {
+    private static void traversePreviousTree(Node root) {
         if (root != null){
             System.out.print(root.value + " ");
-            traverseTree(root.left);
-            traverseTree(root.right);
+            traversePreviousTree(root.left);
+            traversePreviousTree(root.right);
+        }
+    }
+
+    /**
+     * 递归中序遍历
+     */
+    private static void traverseCenterTree(Node root) {
+        if (root != null){
+            traverseCenterTree(root.left);
+            System.out.print(root.value + " ");
+            traverseCenterTree(root.right);
+        }
+    }
+
+    /**
+     * 递归后序遍历
+     */
+    private static void traverseAfterTree(Node root) {
+        if (root != null){
+            traverseAfterTree(root.left);
+            traverseAfterTree(root.right);
+            System.out.print(root.value + " ");
         }
     }
 
