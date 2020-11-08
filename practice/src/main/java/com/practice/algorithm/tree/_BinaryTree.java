@@ -91,7 +91,7 @@ public class _BinaryTree {
         }
 
         /**
-         * 递归前序遍历
+         * 前序遍历
          */
         public void traversePreviousTree(Node root) {
             if (root != null) {
@@ -102,7 +102,7 @@ public class _BinaryTree {
         }
 
         /**
-         * 递归中序遍历
+         * 中序遍历
          */
         public void traverseCenterTree(Node root) {
             if (root != null) {
@@ -113,7 +113,7 @@ public class _BinaryTree {
         }
 
         /**
-         * 递归后序遍历
+         * 后序遍历
          */
         public void traverseAfterTree(Node root) {
             if (root != null) {
@@ -128,6 +128,25 @@ public class _BinaryTree {
      * 循环遍历
      */
     private static class Traverse{
+        /**
+         * 前序遍历
+         */
+        public void traversePreviousTree(Node root) {
 
+        }
+
+        /**
+         * 中序遍历
+         */
+        public void traverseCenterTree(Node root) {
+
+        }
+
+        /**
+         * 后序遍历
+         */
+        public void traverseAfterTree(Node root) {
+
+        }
     }
 }
