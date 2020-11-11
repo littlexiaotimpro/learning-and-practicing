@@ -1,8 +1,5 @@
-server:
-  port: 8888
-
 spring:
   profiles:
-    active: test
+    active: dev
   main:
     lazy-initialization: false

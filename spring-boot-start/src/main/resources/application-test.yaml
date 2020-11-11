@@ -1,3 +1,6 @@
+server:
+  port: 8888
+
 template:
   data:
     code: "0001"
