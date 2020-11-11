@@ -62,7 +62,7 @@ public class SnowFlake {
     /**
      * 生成序列号
      */
-    public synchronized long generateId() {
+    public synchronized long generateId(String tName) {
         // 获取系统当前时间戳
         long currStamp = getTimestamp();
         if (currStamp < lastStamp) {
@@ -86,7 +86,7 @@ public class SnowFlake {
         long l1 = dataCenterId << DATA_CENTER_LEFT;
         long l2 = machineId << MACHINE_LEFT;
         long l3 = sequence;
-        System.out.println(l + "-" + l1 + "-" + l2 + "-" + l3);
+        System.out.println(tName + " -> " + l + "-" + l1 + "-" + l2 + "-" + l3);
 
         //时间戳部分 | 数据中心部分 | 机器标识部分 | 序列号部分
         return l | l1 | l2 | l3;
@@ -110,7 +110,7 @@ public class SnowFlake {
     /**
      * 获取指定日期时间戳
      */
-    private void getAssignDateMills(){
+    private void getAssignDateMills() {
         Calendar build = new Calendar.Builder()
                 .setDate(2020, 1, 1)
                 .build();
