@@ -1,5 +1,7 @@
 package com.practice.algorithm.dp;
 
+import java.util.Arrays;
+
 /**
  * @author XiaoSi
  * @className _01_Knapsack
@@ -22,6 +24,9 @@ public class _01_Knapsack {
             for (int zeroes = m; zeroes >= count[0]; zeroes--)
                 for (int ones = n; ones >= count[1]; ones--)
                     dp[zeroes][ones] = Math.max(1 + dp[zeroes - count[0]][ones - count[1]], dp[zeroes][ones]);
+        }
+        for (int[] ints : dp) {
+            System.out.println(Arrays.toString(ints));
         }
         return dp[m][n];
     }
