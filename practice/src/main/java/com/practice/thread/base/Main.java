@@ -1,4 +1,4 @@
-package com.practice.thread;
+package com.practice.thread.base;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

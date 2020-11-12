@@ -1,6 +1,6 @@
-package com.practice.thread;
+package com.practice.thread.base;
 
-import com.practice.thread.common.DataContext;
+import com.practice.thread.base.common.DataContext;
 
 public class ContextMain {
 

@@ -1,4 +1,4 @@
-package com.practice.thread.common;
+package com.practice.thread.base.common;
 
 public class DataContext {
 
