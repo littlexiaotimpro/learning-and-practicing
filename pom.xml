@@ -17,6 +17,7 @@
         <module>spring-framework-annotation</module>
         <module>spring-framework-mybatis</module>
         <module>spring-framework-jpa</module>
+        <module>spring-framework-amqp</module>
     </modules>
 
     <parent>
