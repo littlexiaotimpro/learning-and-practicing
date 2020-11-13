@@ -1,1 +1,2 @@
 org.springframework.boot.diagnostics.FailureAnalyzer=\
+com.practice.start.analyzer.SelfDefinitionFailureAnalyzer
