@@ -21,12 +21,12 @@ public class StartApplication {
     private final TemplateConfig templateConfig;
 
     @Autowired
-    private final DataBean dataBean;
+    private DataBean dataBean;
 
     public StartApplication(TemplateConfig templateConfig) {
         this.templateConfig = templateConfig;
         // 触发自定义的异常分析
-        throw new SelfAnalyzerException("Application start failure!!");
+//        throw new SelfAnalyzerException("Application start failure!!");
     }
 
     @RequestMapping(value = "/")

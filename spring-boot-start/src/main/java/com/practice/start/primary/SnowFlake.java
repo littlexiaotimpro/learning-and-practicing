@@ -86,7 +86,7 @@ public class SnowFlake {
         long l1 = dataCenterId << DATA_CENTER_LEFT;
         long l2 = machineId << MACHINE_LEFT;
         long l3 = sequence;
-        System.out.println(tName + " -> " + l + "-" + l1 + "-" + l2 + "-" + l3);
+        //System.out.println(tName + " -> " + l + "-" + l1 + "-" + l2 + "-" + l3);
 
         //时间戳部分 | 数据中心部分 | 机器标识部分 | 序列号部分
         return l | l1 | l2 | l3;
