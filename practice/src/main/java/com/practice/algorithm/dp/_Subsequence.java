@@ -22,25 +22,24 @@ public class _Subsequence {
             return 0;
         }
         int[] res = new int[n];
-        res[0] = 1;
+        Arrays.fill(res, 1);
+        int max = 1;
         for (int i = 1; i < n; i++) {
             for (int j = i - 1; j >= 0; j--) {
                 if (source[j] < source[i]) {
                     res[i] = Math.max(res[j] + 1, res[i]);
                 }
             }
-            if (res[i] == 0) {
-                res[i] = 1;
-            }
+            max = Math.max(max,res[i]);
         }
         // 输出各元素值对应位置的最优解
         System.out.println(Arrays.toString(res));
-        return res[n - 1];
+        return max;
     }
 
 
     public static void main(String[] args) {
-        int[] source = {1, 5, 2, 3, 1, 6, 9, 7, 8};
+        int[] source = {1, 3, 6, 7, 9, 4, 10, 5, 6};
         int lis = findLIS(source, source.length);
         System.out.println("最长上升子序列长度为：" + lis);
     }
