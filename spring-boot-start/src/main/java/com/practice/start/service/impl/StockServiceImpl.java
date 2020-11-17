@@ -40,7 +40,7 @@ public class StockServiceImpl implements StockService {
             Integer count = params.get("count");
             jdbcTemplate.update(sql, count, goodId);
             this.increase(params);
-            logger.error("库存充足，下单成功！");
+            logger.info("库存充足，下单成功！");
         }
     }
 
