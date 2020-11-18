@@ -1,8 +1,8 @@
 package com.practice.test.entity;
 
+import com.practice.test.annotation.Column;
+import com.practice.test.annotation.Id;
 import lombok.Data;
-
-import java.util.Date;
 
 /**
  * @author XiaoSi
@@ -12,9 +12,20 @@ import java.util.Date;
  */
 @Data
 public class Log {
+
+    @Id
+    @Column(value = "logNo")
     private String logNo;
-    private String operator;
-    private String operation;
-    private String content;
-    private String createtime;
+
+    @Column(value = "operator")
+    private String logOperator;
+
+    @Column(value = "operation")
+    private String logOperation;
+
+    @Column(value = "content")
+    private String logContent;
+
+    @Column(value = "createtime")
+    private String logCreateTime;
 }

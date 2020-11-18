@@ -17,6 +17,7 @@ public abstract class AbstractDataAccessor {
      * @return 操作结果
      */
     public abstract int delete(String sql, Object... args);
+    public abstract <T> int delete(T t);
 
     /**
      * 修改数据
