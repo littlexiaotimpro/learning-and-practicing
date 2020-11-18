@@ -16,15 +16,20 @@ public class _Subsequence {
      * 使得 source[p] < source[x]，即，f(x) = f(p) + 1，f(n)表示最优解
      * <p>
      * 一般式为，f(x) = max(f(p)) + 1，p < x，且 source[p] < source[x]
+     * <p>
+     * 时间复杂度：O(n^2) -> O(n*log(n))
+     * 空间复杂度：O(n)
      */
     private static int findLIS(int[] source, int n) {
         if (n == 0) {
             return 0;
         }
         int[] res = new int[n];
+        // 赋初始值
         Arrays.fill(res, 1);
         int max = 1;
         for (int i = 1; i < n; i++) {
+            // 内循环目的是求最后以第i各元素结尾的最长上升子序列
             for (int j = i - 1; j >= 0; j--) {
                 if (source[j] < source[i]) {
                     res[i] = Math.max(res[j] + 1, res[i]);
