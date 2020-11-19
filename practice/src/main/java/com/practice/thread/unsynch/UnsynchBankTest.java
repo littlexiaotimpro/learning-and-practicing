@@ -8,7 +8,7 @@ package com.practice.thread.unsynch;
  */
 public class UnsynchBankTest {
 
-    public static final int ACCOUNTS_NUM = 100;
+    public static final int ACCOUNTS_NUM = 10;
     public static final double INITIAL_BALANCE = 1000;
     public static final double MAX_AMOUNT = 1000;
     public static final int DELAY = 10;
@@ -18,9 +18,9 @@ public class UnsynchBankTest {
      */
     public static void main(String[] args) {
         // 1.加锁
-        // Bank bank = new Bank(ACCOUNTS_NUM, INITIAL_BALANCE);
+         Bank bank = new Bank(ACCOUNTS_NUM, INITIAL_BALANCE);
         // 2.加 synchronized
-        SyncBank bank = new SyncBank(ACCOUNTS_NUM, INITIAL_BALANCE);
+//        SyncBank bank = new SyncBank(ACCOUNTS_NUM, INITIAL_BALANCE);
         for (int i = 0; i < ACCOUNTS_NUM; i++) {
             int fromAccount = i;
             Runnable r = () -> {
@@ -28,7 +28,12 @@ public class UnsynchBankTest {
                     while (true) {
                         int toAccount = (int) (bank.size() * Math.random());
                         double amount = MAX_AMOUNT * Math.random();
-                        bank.transfer(fromAccount, toAccount, amount);
+                        /*
+                         * 交换from和to，存在第i个线程负责向第i个账户存钱
+                         * 这样有可能将所有的线程都集中到一个账户上，
+                         * 当每一个线程都视图从这个账户中取大于余额的钱时就会导致死锁的发生
+                         */
+                        bank.transfer(toAccount, fromAccount, amount);
                         Thread.sleep(DELAY);
                     }
                 } catch (InterruptedException e) {

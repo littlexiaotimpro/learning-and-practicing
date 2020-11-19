@@ -31,11 +31,11 @@ public class Bank {
      * 解决方式一：加锁{@link ReentrantLock}
      * 通过加锁的方式锁定当前对象的方法逻辑操作
      * <p>
-     *     锁和条件
-     *     * 锁用来保护代码片段，任何时刻只能有一个线程执行被保护的代码
-     *     * 锁可以用来管理试图进入被保护代码段的线程
-     *     * 锁可以拥有一个或多个相关的条件对象
-     *     * 每个条件对象管理那些已经进入被保护的代码段但不能运行的线程
+     * 锁和条件
+     * * 锁用来保护代码片段，任何时刻只能有一个线程执行被保护的代码
+     * * 锁可以用来管理试图进入被保护代码段的线程
+     * * 锁可以拥有一个或多个相关的条件对象
+     * * 每个条件对象管理那些已经进入被保护的代码段但不能运行的线程
      * </p>
      */
     public void transfer(int from, int to, double amount) {
@@ -53,6 +53,7 @@ public class Bank {
                 sufficientFunds.await();
             }
             System.out.print(Thread.currentThread());
+            System.out.printf(" Account of [from:%d] balance is [%.2f]，[to:%d] balance is [%.2f]", from, accounts[from], to, accounts[to]);
             accounts[from] -= amount;
             System.out.printf("%10.2f from [%d] to [%d]", amount, from, to);
             accounts[to] += amount;

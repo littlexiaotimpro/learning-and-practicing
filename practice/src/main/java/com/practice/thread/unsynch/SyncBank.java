@@ -39,6 +39,7 @@ public class SyncBank {
             wait();
         }
         System.out.print(Thread.currentThread());
+        System.out.printf(" Account of [from:%d] balance is [%.2f]，[to:%d] balance is [%.2f]", from, accounts[from], to, accounts[to]);
         accounts[from] -= amount;
         System.out.printf("%10.2f from [%d] to [%d]", amount, from, to);
         accounts[to] += amount;
