@@ -19,6 +19,7 @@ public class TemplateMethod extends AbstractTemplateMethod{
             templateMethod.second();
             templateMethod.third();
             templateMethod.end();
+            System.out.println(common);
         });
     }
 }
