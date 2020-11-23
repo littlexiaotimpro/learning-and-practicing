@@ -1,41 +1,20 @@
 package com.practice.start.common;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.practice.start.entity.User;
 
-public final class LocalCache {
-    private String id;
-    private final Map<String, Object> cache = new HashMap<>();
+public abstract class LocalCache {
 
-    public LocalCache() {
+    private static final ThreadLocal<User> cache = new ThreadLocal<>();
+
+    public static User getUser(){
+        return cache.get();
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public static void setUser(User user) {
+        cache.set(user);
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public Map<String, Object> getCache() {
-        return cache;
-    }
-
-    public <T> T get(String o, Class<T> aClass) {
-        Object o1 = cache.get(o);
-        return aClass.cast(o1);
-    }
-
-    public void put(String o, Object o1) {
-        cache.put(o, o1);
-    }
-
-    public void evict(String o) {
-        cache.remove(o);
-    }
-
-    public void clear() {
-        cache.clear();
+    public static void clear() {
+        cache.remove();
     }
 }
