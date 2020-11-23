@@ -14,3 +14,4 @@ spring-framework-jdbc | 基于 JDBCTemplate 的数据访问及事务管理
 spring-framework-mybatis | 基于 Mybatis 的数据访问及事务管理
 spring-framework-jpa | 基于 JPA 的数据访问及事务管理
 spring-framework-amqp | 关于消息队列的使用
+spring-framework-redis | 关于分布式缓存的使用

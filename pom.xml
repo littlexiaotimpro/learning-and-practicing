@@ -18,6 +18,7 @@
         <module>spring-framework-mybatis</module>
         <module>spring-framework-jpa</module>
         <module>spring-framework-amqp</module>
+        <module>spring-framework-redis</module>
     </modules>
 
     <parent>
