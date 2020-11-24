@@ -20,10 +20,8 @@ public class LoginController {
 
     @RequestMapping(value = "/check")
     public String check(HttpServletRequest request) {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        System.out.println(username + " : " + password);
-        logicService.modifyCache(username);
+        System.out.println("登录验证");
+        logicService.modifyCache();
         return "logic";
     }
 

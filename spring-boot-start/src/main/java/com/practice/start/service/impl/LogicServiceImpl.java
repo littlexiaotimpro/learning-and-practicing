@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 public class LogicServiceImpl extends AbstractLogicService {
 
     @Override
-    public void modifyCache(String username) {
+    public void modifyCache() {
         // 每次操作会将原有实例的对象属性值覆盖，并没有达到缓存状态的作用？
-        User user = new User();
-        user.setUsername(username);
-        LocalCache.setUser(user);
+        User user = LocalCache.getUser();
+        System.out.println("modify -> " + user);
     }
 
     @Override
     public void checkCache() {
-        System.out.println(LocalCache.getUser().getUsername());
+        // 因为是直接访问此接口，所以输出的结果和modify的执行结果不一致
+        System.out.println("check -> " + LocalCache.getUser());
     }
 }
