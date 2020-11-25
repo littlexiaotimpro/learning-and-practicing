@@ -1,5 +1,19 @@
 spring:
   profiles:
-    active: dev
+    active: default
   main:
     lazy-initialization: false
+
+  # redis 基本配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 3000
+
+    # RedisSentinelConfiguration 的配置文件中的定义方式
+    sentinel:
+      master: "mymaster"
+      nodes:
+        - "127.0.0.1:26379"
+        - "127.0.0.1:26380"
