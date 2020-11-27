@@ -2,6 +2,7 @@ package com.pratice.redis.config;
 
 import com.pratice.redis.bean.Example;
 import com.pratice.redis.factory.DefaultYamlPropertySourceFactory;
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,8 @@ import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+
+import java.time.Duration;
 
 @Configuration
 @PropertySource(value = {"classpath:/application.yml",
@@ -41,12 +44,23 @@ public class AutoConfiguration {
     @Bean
     @Profile("default")
     public JedisConnectionFactory defaultJedisConnectionFactory() {
-        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("localhost", 6379);
+        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
+        config.setDatabase(redisProperties.getDatabase());
         config.setHostName(redisProperties.getHost());
         config.setPort(redisProperties.getPort());
         config.setPassword(redisProperties.getPassword());
 
-        JedisClientConfiguration clientConfig = JedisClientConfiguration.defaultConfiguration();
+        // 使用默认配置
+        JedisClientConfiguration clientConfig = JedisClientConfiguration.builder()
+                .readTimeout(Duration.ofMillis(redisProperties.getTimeout()))
+                .connectTimeout(Duration.ofMillis(redisProperties.getTimeout()))
+                .build();
+        // build() 给 poolConfig 赋上了默认值
+        GenericObjectPoolConfig poolConfig = clientConfig.getPoolConfig().get();
+        poolConfig.setMinIdle(redisProperties.getMinIdle());
+        poolConfig.setMaxIdle(redisProperties.getMaxIdle());
+        poolConfig.setMaxTotal(redisProperties.getMaxActive());
+        poolConfig.setMaxWaitMillis(redisProperties.getMaxWait());
         return new JedisConnectionFactory(config, clientConfig);
     }
 
