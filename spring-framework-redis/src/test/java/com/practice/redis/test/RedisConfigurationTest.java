@@ -21,8 +21,14 @@ public class RedisConfigurationTest {
         for (int i = 0; i < 15; i++) {
             example.add("admin", "value" + i);
         }
-        List<String> admin = example.get("admin", 0, 20);
+        List<Object> admin = example.get("admin", 0, 20);
         System.out.println(admin);
+
+        example.addValue("prefix","add");
+
+        Object prefix = example.getValue("prefix");
+        System.out.println(prefix.toString());
+
         applicationContext.close();
     }
 
