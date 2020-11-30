@@ -26,7 +26,8 @@ spring:
 
     # RedisSentinelConfiguration 的配置文件中的定义方式
     sentinel:
-      master: "mymaster"
+      master: mymaster
       nodes:
-        - "127.0.0.1:26379"
-        - "127.0.0.1:26380"
+        - 127.0.0.1:26379
+        - 127.0.0.1:26380
+      password:

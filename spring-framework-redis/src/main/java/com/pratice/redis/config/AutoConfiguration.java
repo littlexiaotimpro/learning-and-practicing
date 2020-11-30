@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -67,16 +68,13 @@ public class AutoConfiguration {
     @Bean
     @Profile("dev")
     public JedisConnectionFactory devJedisConnectionFactory() {
-        /*
-            // RedisSentinelConfiguration 配置类中的定义方式
-            RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration()
-                   .master("mymaster")
-                   .sentinel("127.0.0.1", 26379)
-                   .sentinel("127.0.0.1", 26380);
-         */
-        // 自定义服务器及端口
-        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("localhost", 6379);
-        return new JedisConnectionFactory(config);
+        // Redis 前哨配置
+        RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration()
+                .master("mymaster")
+                .sentinel("127.0.0.1", 26379)
+                .sentinel("127.0.0.1", 26380);
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(sentinelConfig);
+        return jedisConnectionFactory;
     }
 
     @Bean
