@@ -17,13 +17,15 @@ public class StockController {
     private StockService stockService;
 
     @PostMapping(value = "/stock")
-    public void pay(@RequestBody Map<String, Integer> params){
+    public void pay(@RequestBody Map<String, Integer> params) throws Exception {
         stockService.handleStock(params);
+        throw new Exception("测试异常父类");
     }
 
     @GetMapping(value = "/consistent")
     public void isConsistent(){
         stockService.isConsistent();
+        throw new NullPointerException("空指针异常");
     }
 
 }
