@@ -9,6 +9,7 @@ public class DemoBeanB implements InitializingBean, DisposableBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        // 先于指定的 init-method 方法前执行
         System.out.println("初始化方法 === InitializingBean.afterPropertiesSet =====>" + getClass().getSimpleName());
     }
 
