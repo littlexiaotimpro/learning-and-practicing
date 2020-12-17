@@ -38,7 +38,11 @@ public class Main {
 //        ExecutorService executorService = Executors.newSingleThreadExecutor();
         for (int i = 0; i < 5; i++) {
             executorService.execute(() -> {
-                threadLocal.set("线程池: " + Thread.currentThread().getName());
+                String name = Thread.currentThread().getName();
+                if (name.endsWith("3")){
+                    throw new RuntimeException("多线程的异常测试！");
+                }
+                threadLocal.set("线程池: " + name);
                 System.out.println(threadLocal.get());
             });
         }
