@@ -117,4 +117,12 @@ public class SpELParserTest {
         System.out.println(i);
     }
 
+    @Test
+    public void test07(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("flag", 14);
+        String o = SimpleSpELParser.templateParser("${flag / 2}+${flag + 'abc'}", map, String.class);
+        System.out.println(o);
+    }
+
 }
