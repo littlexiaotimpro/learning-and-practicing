@@ -22,10 +22,10 @@ public class XMLBeanMoreTest {
         System.out.println(bean);
 
         /*
-         * 配置bean标签的 autowire 属性实现自动注入
+         * 配置bean标签的 autowire 属性实现自动注入(不推荐使用)
          * 1.byName:
          * 依据属性名进行注入，会匹配与属性名称相同的对象
-         * 属性名相同，则无法注入对象如下，定义 id="connect"，BeanDemoConnect的实例不为null
+         * 属性名相同，注入对象如下，定义 id="connect"，BeanDemoConnect的实例不为null
          * class com.practice.entity.BeanDemoAnnotation {connect=class com.practice.entity.BeanDemoConnect{connectCode=null, connectString=null}}
          *
          * 属性名不同，则无法注入对象如下，定义 id="demoConnect"
