@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-swagger
+
+# Swagger 属性配置
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  version: 1.0
+  description: springfox swagger 3.0 Demo
+  try-host: http://localhost:${server.port}

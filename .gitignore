@@ -1,0 +1,11 @@
+/application/target/
+/practice/target/
+/spring-boot-start/target/
+/spring-framework/target/
+/spring-framework-amqp/target/
+/spring-framework-annotation/target/
+/spring-framework-jdbc/target/
+/spring-framework-jpa/target/
+/spring-framework-mybatis/target/
+/spring-framework-redis/target/
+/spring-frameworke-swagger/target/
