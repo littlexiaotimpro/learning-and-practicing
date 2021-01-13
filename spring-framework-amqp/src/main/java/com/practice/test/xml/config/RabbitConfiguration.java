@@ -1,4 +1,4 @@
-package com.practice.test.rabbitmq.config;
+package com.practice.test.xml.config;
 
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;

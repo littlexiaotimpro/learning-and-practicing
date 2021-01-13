@@ -1,6 +1,6 @@
 package com.practice.test.rabbitmq;
 
-import com.practice.test.rabbitmq.config.RabbitConfiguration;
+import com.practice.test.xml.config.RabbitConfiguration;
 import org.junit.Test;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.context.ApplicationContext;
