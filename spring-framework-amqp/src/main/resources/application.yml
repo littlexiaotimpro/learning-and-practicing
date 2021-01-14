@@ -1,19 +1,21 @@
+# tut1
+#spring:
+#  profiles:
+#    active: usage_message
+#
+#logging:
+#  level:
+#    org: ERROR
+#
+#tutorial:
+#  client:
+#    duration: 10000
+
 spring:
-  profiles:
-    active: usage_message
-
-logging:
-  level:
-    org: ERROR
-
-tutorial:
-  client:
-    duration: 10000
-
-rabbitmq:
-  host: 192.168.199.174 # rabbitmq的连接地址
-  port: 5672 # rabbitmq的连接端口号
-  virtual-host: /demo  # rabbitmq的虚拟host
-  username: demo  # rabbitmq的用户名
-  password: demo # rabbitmq的密码
-  publisher-confirms: true #如果对异步消息需要回调必须设置为true
+  rabbitmq:
+    host: 192.168.199.174 # rabbitmq的连接地址
+    port: 5672 # rabbitmq的连接端口号
+    virtual-host: /demo  # rabbitmq的虚拟host
+    username: demo  # rabbitmq的用户名
+    password: demo # rabbitmq的密码
+    publisher-confirms: true #如果对异步消息需要回调必须设置为true
