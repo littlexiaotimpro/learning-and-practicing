@@ -1,4 +1,4 @@
-package com.practice.test.rabbitmq;
+package com.practice.test.xml;
 
 import com.practice.test.xml.config.RabbitConfiguration;
 import org.junit.Test;

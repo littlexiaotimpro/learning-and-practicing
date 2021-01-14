@@ -1,4 +1,4 @@
-package com.practice.test.rabbitmq;
+package com.practice.test.xml;
 
 import org.junit.Test;
 import org.springframework.amqp.core.AmqpTemplate;

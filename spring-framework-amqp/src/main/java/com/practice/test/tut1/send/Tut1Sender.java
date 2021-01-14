@@ -1,4 +1,4 @@
-package com.practice.test.rabbitmq.send;
+package com.practice.test.tut1.send;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

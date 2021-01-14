@@ -1,7 +1,7 @@
-package com.practice.test.rabbitmq.config;
+package com.practice.test.tut1.config;
 
-import com.practice.test.rabbitmq.receive.Tut1Receiver;
-import com.practice.test.rabbitmq.send.Tut1Sender;
+import com.practice.test.tut1.receive.Tut1Receiver;
+import com.practice.test.tut1.send.Tut1Sender;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

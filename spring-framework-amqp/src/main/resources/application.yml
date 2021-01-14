@@ -11,9 +11,9 @@ tutorial:
     duration: 10000
 
 rabbitmq:
-  host: localhost # rabbitmq的连接地址
+  host: 192.168.199.174 # rabbitmq的连接地址
   port: 5672 # rabbitmq的连接端口号
-  virtual-host:  # rabbitmq的虚拟host
-  username:  # rabbitmq的用户名
-  password:  # rabbitmq的密码
+  virtual-host: /demo  # rabbitmq的虚拟host
+  username: demo  # rabbitmq的用户名
+  password: demo # rabbitmq的密码
   publisher-confirms: true #如果对异步消息需要回调必须设置为true

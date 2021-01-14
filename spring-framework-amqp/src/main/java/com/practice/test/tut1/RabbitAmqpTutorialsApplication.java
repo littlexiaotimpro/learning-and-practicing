@@ -1,6 +1,6 @@
-package com.practice.test.rabbitmq;
+package com.practice.test.tut1;
 
-import com.practice.test.rabbitmq.runner.RabbitAmqpTutorialsRunner;
+import com.practice.test.tut1.runner.RabbitAmqpTutorialsRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

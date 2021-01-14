@@ -1,4 +1,4 @@
-package com.practice.test.rabbitmq.runner;
+package com.practice.test.tut1.runner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.practice.test.rabbitmq.receive;
+package com.practice.test.tut1.receive;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
