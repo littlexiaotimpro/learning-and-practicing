@@ -3,6 +3,7 @@ package com.practice.test;
 import com.practice.config.ComponentScanConfig;
 import com.practice.config.aware.DemoBeanAware;
 import com.practice.entity.DemoBean;
+import com.practice.entity.DemoBeanF;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -22,6 +23,14 @@ public class AnnotationConfigurationTest {
         // 不符合Profile配置的环境无法加载
         // DemoBeanE beanE = context.getBean(DemoBeanE.class);
         // 手动关闭容器，singleton的实例会执行其对象销毁方法
+        context.close();
+    }
+
+    @Test
+    public void testConstructor() {
+        ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(ComponentScanConfig.class);
+        printBean(context);
+        DemoBeanF bean = context.getBean(DemoBeanF.class);
         context.close();
     }
 
