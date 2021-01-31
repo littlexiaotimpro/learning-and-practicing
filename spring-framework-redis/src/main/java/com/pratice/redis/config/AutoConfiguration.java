@@ -5,10 +5,7 @@ import com.pratice.redis.factory.DefaultYamlPropertySourceFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
@@ -19,6 +16,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import java.time.Duration;
 
 @Configuration
+@ComponentScan(basePackages = {"com.pratice.redis.service"})
 @PropertySource(value = {"classpath:/application.yml",
         "classpath:/application-default.yml",
         "classpath:/application-dev.yml"},
@@ -35,7 +33,7 @@ public class AutoConfiguration {
     @Bean
     @Profile("default-lettuce")
     public LettuceConnectionFactory defaultLettuceConnectionFactory() {
-        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("localhost", 6379);
+        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(redisProperties.getHost(), redisProperties.getPort());
         return new LettuceConnectionFactory(config);
     }
 
@@ -44,6 +42,7 @@ public class AutoConfiguration {
      */
     @Bean
     @Profile("default")
+    @SuppressWarnings("rawtypes")
     public JedisConnectionFactory defaultJedisConnectionFactory() {
         RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
         config.setDatabase(redisProperties.getDatabase());
@@ -73,13 +72,19 @@ public class AutoConfiguration {
                 .master("mymaster")
                 .sentinel("127.0.0.1", 26379)
                 .sentinel("127.0.0.1", 26380);
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(sentinelConfig);
-        return jedisConnectionFactory;
+        return new JedisConnectionFactory(sentinelConfig);
     }
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(defaultJedisConnectionFactory());
+        return redisTemplate;
+    }
+
+    @Bean
+    public RedisTemplate<String, String> stringRedisTemplate() {
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(defaultJedisConnectionFactory());
         return redisTemplate;
     }

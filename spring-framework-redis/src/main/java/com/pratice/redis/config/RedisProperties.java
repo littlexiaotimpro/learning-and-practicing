@@ -5,11 +5,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "spring.redis")
 public class RedisProperties {
+    // redis 基本属性
     private String host;
     private int database;
     private int port;
     private int timeout;
     private String password;
+
+    // redis 验证码
+    @Value("${spring.redis.key.prefix.authCode}")
+    private String prefixAuthCode;
+    @Value("${spring.redis.key.expire.authCode}")
+    private Long expireAuthCode;
+
+    // redis 客户端相关属性
     @Value("${spring.redis.jedis.pool.max-active}")
     private int maxActive;
     @Value("${spring.redis.jedis.pool.max-wait}")
@@ -57,6 +66,22 @@ public class RedisProperties {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPrefixAuthCode() {
+        return prefixAuthCode;
+    }
+
+    public void setPrefixAuthCode(String prefixAuthCode) {
+        this.prefixAuthCode = prefixAuthCode;
+    }
+
+    public Long getExpireAuthCode() {
+        return expireAuthCode;
+    }
+
+    public void setExpireAuthCode(Long expireAuthCode) {
+        this.expireAuthCode = expireAuthCode;
     }
 
     public int getMaxActive() {

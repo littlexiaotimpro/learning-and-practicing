@@ -12,6 +12,7 @@ import java.util.Optional;
 public class DefaultYamlPropertySourceFactory implements PropertySourceFactory {
 
     @Override
+    @SuppressWarnings("NullableProblems")
     public PropertySource<?> createPropertySource(String name, EncodedResource resource) throws IOException {
         String resourceName = Optional.ofNullable(name).orElse(resource.getResource().getFilename());
         List<PropertySource<?>> yamlSources = new YamlPropertySourceLoader().load(resourceName, resource.getResource());

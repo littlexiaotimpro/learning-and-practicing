@@ -12,7 +12,7 @@ spring:
         authCode: 120 # 验证码超期时间
 
     # Redis 基本配置
-    host: localhost # Redis服务器地址
+    host: 192.168.199.174 # Redis服务器地址
     database: 0 # Redis数据库索引（默认为0）
     port: 6379 # Redis服务器连接端口
     password: # Redis服务器连接密码（默认为空）
@@ -25,9 +25,9 @@ spring:
     timeout: 3000 # 连接超时时间（毫秒）
 
     # RedisSentinelConfiguration 的配置文件中的定义方式
-    sentinel:
-      master: mymaster
-      nodes:
-        - 127.0.0.1:26379
-        - 127.0.0.1:26380
-      password:
+#    sentinel:
+#      master: mymaster
+#      nodes:
+#        - 127.0.0.1:26379
+#        - 127.0.0.1:26380
+#      password:
