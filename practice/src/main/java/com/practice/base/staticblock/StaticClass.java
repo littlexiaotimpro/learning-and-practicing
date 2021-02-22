@@ -1,4 +1,4 @@
-package com.practice.base;
+package com.practice.base.staticblock;
 
 public class StaticClass {
 
