@@ -76,16 +76,40 @@ public class _List {
         list.add(2);
         list.add(3);
         list.add(100);
-        list.add(list.size()-1,6);
-        for (int i = 0; i < list.size()-1; i++) {
+        list.add(list.size() - 1, 6);
+        for (int i = 0; i < list.size() - 1; i++) {
             System.out.println(Arrays.toString(list.subList(i, i == list.size() - 1 ? list.size() : i + 2).toArray()));
         }
+    }
+
+    /**
+     * 使用 foreach 删除元素会抛异常
+     * 原因：
+     * 在执行 remove 操作时 modCount 自增，而 expectedModCount 为变化，导致二者不同
+     * <p>
+     * Iterator.remove
+     * 在执行 remove 后，会将 modCount 的值赋予 expectedModCount
+     */
+    private void remove() {
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        // list.removeIf("3"::equals);
+        // modCount != expectedModCount
+        for (String str : list) {
+            if ("3".equals(str)) {
+                list.remove(str);
+            }
+        }
+        System.out.println(list);
     }
 
     public static void main(String[] args) {
         instance = getInstance();
 //        instance.arrayList();
 //        instance.linkedList();
-        instance.subList();
+//        instance.subList();
+//        instance.remove();
     }
 }
