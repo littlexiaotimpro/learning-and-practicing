@@ -1,6 +1,6 @@
 package com.practice.reflection;
 
-public class Demo {
+public class Demo extends SuperDemo {
     private int target;
     private String content;
 

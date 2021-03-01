@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,5 +21,11 @@ public class TestList {
 
         ArrayList sources1 = (ArrayList) sources;
         System.out.println(sources1.size());
+    }
+
+    @Test
+    public void test(){
+        String format = MessageFormat.format("var5={0}, var6={1}", "superVariable5", "superVariable6");
+        System.out.println(format);
     }
 }
