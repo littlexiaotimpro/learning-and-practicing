@@ -17,8 +17,8 @@ public class CGLibProxy {
         // MethodInterceptor 方法拦截接口，父类的所有方法都会加上此拦截逻辑
         SimpleDemoBuilder builder = (SimpleDemoBuilder) Enhancer.create(SimpleDemoBuilder.class, null, new MethodInterceptor() {
             /**
-             * @param o           代理对象
-             * @param method      代理方法
+             * @param o           被代理对象
+             * @param method      被代理方法
              * @param objects     方法参数列表
              * @param methodProxy 方法代理对象
              */
