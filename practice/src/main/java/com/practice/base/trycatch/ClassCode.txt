@@ -1,0 +1,32 @@
+Compiled from "TryCatchFinally01.java"
+public class com.practice.base.trycatch.TryCatchFinally01 {
+  public com.practice.base.trycatch.TryCatchFinally01();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  private static int withReturn();
+    Code:
+       0: iconst_0                  // 将int常量值0压入操作数栈，栈中值元素值为 0
+       1: istore_0                  // 将int类型值存入局部变量0，局部变量0的值 0;
+       2: iload_0                   // 加载局部变量0的int类型值，值为0
+       3: istore_1                  // 将int类型值存入局部变量1，将局部变量0的值存入局部变量1，都为0
+       4: iinc          0, 1        // 把局部变量位置 0 的元素进行递增（+1）操作，局部变量0的值变为1
+       7: iload_1                   // 加载局部变量1的int类型值，此时加载的局部变量1的值还是0
+       8: ireturn                   // 返回int类型结果，返回的是局部变量1的值
+       9: astore_2                  // 将引用类型或returnAddress类型值存入局部变量2
+      10: iinc          0, 1        // 把局部变量位置 0 的元素进行递增（+1）操作
+      13: aload_2                   // 从局部变量2中装载引用类型值
+      14: athrow                    // 抛出异常或错误
+    Exception table:
+       from    to  target type
+           2     4     9   any
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: invokestatic  #3                  // Method withReturn:()I
+       6: invokevirtual #4                  // Method java/io/PrintStream.println:(I)V
+       9: return
+}
