@@ -65,7 +65,7 @@
 
     <!-- 包版本统一管理 -->
     <properties>
-        <google-guava.version>28.1-jre</google-guava.version>
+        <google-guava.version>29.0-jre</google-guava.version>
         <che-core-api-dto.version>7.1.0</che-core-api-dto.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
