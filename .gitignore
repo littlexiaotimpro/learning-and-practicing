@@ -20,5 +20,7 @@ awesome.iml
 /spring-framework-mybatis/spring-framework-mybatis.iml
 /spring-framework-redis/target/
 /spring-framework-redis/spring-framework-redis.iml
-/spring-frameworke-swagger/target/
-/spring-frameworke-swagger/spring-frameworke-swagger.iml
+/spring-framework-swagger/target/
+/spring-framework-swagger/spring-framework-swagger.iml
+/spring-framework-kafka/target/
+/spring-framework-kafka/spring-framework-kafka.iml

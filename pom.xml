@@ -19,7 +19,8 @@
         <module>spring-framework-jpa</module>
         <module>spring-framework-amqp</module>
         <module>spring-framework-redis</module>
-        <module>spring-frameworke-swagger</module>
+        <module>spring-framework-swagger</module>
+        <module>spring-framework-kafka</module>
     </modules>
 
     <parent>
