@@ -68,6 +68,10 @@ public class KafkaAutoConfiguration {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(ProducerConfig.LINGER_MS_CONFIG, 10);
+        // 这个是要求每条数据，必须是写入所有 replica 之后，才能认为是写成功了
+        props.put(ProducerConfig.ACKS_CONFIG,"all");
+        // 设置一个足够大的值，要求一旦写入失败，就无限重试，卡在这里了
+        props.put(ProducerConfig.RETRIES_CONFIG,Integer.MAX_VALUE);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         //...

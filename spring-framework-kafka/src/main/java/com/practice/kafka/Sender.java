@@ -10,9 +10,9 @@ public class Sender {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(KafkaAutoConfiguration.class);
         Sender sender = context.getBean(Sender.class);
         for (int i = 0; i < 5; i++) {
-            sender.send("p_topic_message_" + i, 42);
+            sender.send("p_topic_message_" + i, i);
             try {
-                Thread.sleep(10000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -26,7 +26,8 @@ public class Sender {
     }
 
     public void send(String toSend, int key) {
-        this.template.send("p_topic", key, toSend);
+        // 向指定分区发送消息
+        this.template.send("p_topic", (key & 1) == 0 ? 0 : 4, key, toSend);
     }
 
 }
