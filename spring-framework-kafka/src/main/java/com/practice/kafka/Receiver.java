@@ -29,10 +29,11 @@ public class Receiver {
                 service.submit(() -> {
                     for (ConsumerRecord<Integer, String> record : records) {
                         System.out.println("**********************");
-                        System.out.println("当前线程:" + Thread.currentThread() + ","
-                                + "偏移量:" + record.offset() + "," + "主题:"
-                                + record.topic() + "," + "分区:" + record.partition()
-                                + "," + "获取的消息:" + record.value());
+                        System.out.println("* 当前线程: " + Thread.currentThread() + "\n"
+                                + "* 偏移量: " + record.offset() + "\n"
+                                + "* 主题: " + record.topic() + "\n"
+                                + "* 分区: " + record.partition() + "\n"
+                                + "* 获取的消息: " + record.value());
                         System.out.println("**********************");
                     }
                 });
