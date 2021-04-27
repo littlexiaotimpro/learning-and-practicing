@@ -1,7 +1,7 @@
-package com.practice.kafka.config;
+package com.practice.kafka.spring.config;
 
-import com.practice.kafka.Sender;
-import com.practice.kafka.listener.Listener;
+import com.practice.kafka.spring.Sender;
+import com.practice.kafka.spring.listener.Listener;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.IntegerDeserializer;

@@ -1,6 +1,6 @@
-package com.practice.kafka;
+package com.practice.kafka.spring;
 
-import com.practice.kafka.config.KafkaAutoConfiguration;
+import com.practice.kafka.spring.config.KafkaAutoConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.kafka.core.KafkaTemplate;
 

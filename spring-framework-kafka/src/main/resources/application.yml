@@ -1,0 +1,9 @@
+spring:
+  # 应用名称
+  application:
+    name: spring-kafka
+
+  # Kafka 配置
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
