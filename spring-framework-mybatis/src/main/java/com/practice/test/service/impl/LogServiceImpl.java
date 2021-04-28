@@ -72,7 +72,7 @@ public class LogServiceImpl implements LogService {
 //    @Transactional(noRollbackForClassName = {"java.lang.ArithmeticException"})
     public int checkNoRollBackFor(String logNo, String operator) {
         int i = logBeanDAO.updateOne(logNo, operator);
-        int a = 10/0;
+        int a = 10 / 0;
         return i;
     }
 
@@ -80,26 +80,60 @@ public class LogServiceImpl implements LogService {
 
     /**
      * 将多个事务操作直接在本类方法中调用
+     * 默认使用的是当前类型的实例对象（this）调用内部事务方法
+     * 并没有实现事务的嵌套关系
+     * 因此，事务一、二和主事务共享一个事务
      */
     @Override
     @Transactional
     public void checkPropagation() {
         // 嵌套事务一
-        transactionOne("720", "720-test-requires-new");
+        transactionRequiresNew("720", "720-test-requires-new");
         // 嵌套事务二
-        transactionTwo("721", "721-test-requires-new");
+        transactionRequiresNew("721", "721-test-requires-new");
+        int a = 1 / 0;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void transactionRequired(String logNo, String operator) {
+        logBeanDAO.updateOne(logNo, operator);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void transactionOne(String logNo, String operator){
-        logBeanDAO.updateOne(logNo,operator);
+    public void transactionRequiresNew(String logNo, String operator) {
+        logBeanDAO.updateOne(logNo, operator);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void transactionTwo(String logNo, String operator){
-        logBeanDAO.updateOne(logNo,operator);
-        int i = 1/0;
+    public void transactionRequiresNewThrow(String logNo, String operator) {
+        logBeanDAO.updateOne(logNo, operator);
+        int a = 1 / 0;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void transactionSupports(String logNo, String operator) {
+        logBeanDAO.updateOne(logNo, operator);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void transactionMandatory(String logNo, String operator) {
+        logBeanDAO.updateOne(logNo, operator);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public void transactionNotSupported(String logNo, String operator) {
+        logBeanDAO.updateOne(logNo, operator);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NEVER)
+    public void transactionNever(String logNo, String operator) {
+        logBeanDAO.updateOne(logNo, operator);
     }
 }

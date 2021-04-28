@@ -13,9 +13,9 @@ public interface LogService {
 
     String checkReadOnly(String logNo);
 
-    int checkRollBackFor(String logNo,String operator) throws FileNotFoundException;
+    int checkRollBackFor(String logNo, String operator) throws FileNotFoundException;
 
-    int checkNoRollBackFor(String logNo,String operator) throws FileNotFoundException;
+    int checkNoRollBackFor(String logNo, String operator) throws FileNotFoundException;
 
     int insertOne(LogBean logBean);
 
@@ -23,8 +23,18 @@ public interface LogService {
 
     void checkPropagation();
 
-    void transactionOne(String logNo,String operator);
+    void transactionRequired(String logNo, String operator);
 
-    void transactionTwo(String logNo,String operator);
+    void transactionRequiresNew(String logNo, String operator);
+
+    void transactionRequiresNewThrow(String logNo, String operator);
+
+    void transactionSupports(String logNo, String operator);
+
+    void transactionMandatory(String logNo, String operator);
+
+    void transactionNotSupported(String logNo, String operator);
+
+    void transactionNever(String logNo, String operator);
 
 }
