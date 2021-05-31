@@ -1,10 +1,7 @@
 package com.practice.mode.decorator.loader;
 
 /**
- * @ClassName DefaultDataLoader
- * @Description TODO
- * @Author XiaoSi
- * @Date 2019/12/522:02
+ * 默认接口，被装饰的对象
  */
 public interface DefaultDataLoader {
     void defaultLoad();
