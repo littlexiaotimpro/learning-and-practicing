@@ -1,4 +1,4 @@
-package com.practice.mode.observer;
+package com.practice.mode.observer.self;
 
 public class DefaultObserver extends AbstractObserver {
 

@@ -1,12 +1,15 @@
-package com.practice.mode.observer;
+package com.practice.mode.observer.self;
 
 import java.util.Objects;
 import java.util.Vector;
 
 public abstract class AbstractSubscribe implements Subscribe {
 
+    // 通知内容
     private String context;
+    // 观察者
     private final Vector<Observer> observers;
+    // 内容是否变更
     private boolean changed = false;
 
     public AbstractSubscribe() {

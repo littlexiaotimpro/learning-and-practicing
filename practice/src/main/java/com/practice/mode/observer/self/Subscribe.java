@@ -1,5 +1,8 @@
-package com.practice.mode.observer;
+package com.practice.mode.observer.self;
 
+/**
+ * 自定义订阅者类
+ */
 public interface Subscribe {
 
     /**
