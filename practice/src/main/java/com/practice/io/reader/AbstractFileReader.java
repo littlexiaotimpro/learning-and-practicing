@@ -18,5 +18,5 @@ public abstract class AbstractFileReader {
 
     protected abstract void loadBytes(String filepath) throws IOException;
 
-    protected abstract void loadAllFile(String dirPath) throws IOException;
+    protected abstract void loadDir(String dirPath) throws IOException;
 }

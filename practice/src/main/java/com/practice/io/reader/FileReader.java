@@ -65,7 +65,7 @@ public class FileReader extends AbstractFileReader {
     }
 
     @Override
-    public void loadAllFile(String dirPath) throws IOException {
+    public void loadDir(String dirPath) throws IOException {
         File file = new File(dirPath == null ? FILE_DIR : dirPath);
         if (file.isDirectory()) {
             String[] list = file.list();
@@ -74,11 +74,21 @@ public class FileReader extends AbstractFileReader {
             assert files != null;
             for (File f : files) {
                 String absolutePath = f.getAbsolutePath();
+
+                // 文件相关属性
                 System.out.println(f.getParent());
                 System.out.println(f.getPath());
                 System.out.println(absolutePath);
+
+                // 转 URL
+                URL url = f.toURI().toURL();
+                System.out.println(url);
+
+                // 加载文件内容
                 load(absolutePath);
             }
+        } else {
+            throw new RuntimeException("Path is not directory !");
         }
     }
 }

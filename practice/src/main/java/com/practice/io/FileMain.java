@@ -8,9 +8,7 @@ public class FileMain {
     public static void main(String[] args) {
         FileReader fileReader = new FileReader();
         try {
-//            fileReader.load();
-//            fileReader.loadBytes();
-            fileReader.loadAllFile(null);
+            fileReader.loadDir(null);
         } catch (IOException e) {
             e.printStackTrace();
         }
