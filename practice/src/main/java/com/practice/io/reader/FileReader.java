@@ -23,8 +23,8 @@ public class FileReader extends AbstractFileReader {
     }
 
     @Override
-    public void load() throws IOException {
-        File file = new File(FILE_LOCATION_PATH);
+    public void load(String filepath) throws IOException {
+        File file = new File(filepath == null ? FILE_LOCATION_PATH : filepath);
         InputStream is = null;
         BufferedInputStream bis = null;
         try {
@@ -44,8 +44,8 @@ public class FileReader extends AbstractFileReader {
     }
 
     @Override
-    public void loadBytes() throws IOException {
-        File file = new File(FILE_LOCATION_PATH);
+    public void loadBytes(String filepath) throws IOException {
+        File file = new File(filepath == null ? FILE_LOCATION_PATH : filepath);
         InputStream is = null;
         BufferedInputStream bis = null;
         try {
@@ -60,6 +60,24 @@ public class FileReader extends AbstractFileReader {
             if (bis != null) {
                 bis.close();
                 is.close();
+            }
+        }
+    }
+
+    @Override
+    public void loadAllFile(String dirPath) throws IOException {
+        File file = new File(dirPath == null ? FILE_DIR : dirPath);
+        if (file.isDirectory()) {
+            String[] list = file.list();
+            System.out.println(Arrays.toString(list));
+            File[] files = file.listFiles();
+            assert files != null;
+            for (File f : files) {
+                String absolutePath = f.getAbsolutePath();
+                System.out.println(f.getParent());
+                System.out.println(f.getPath());
+                System.out.println(absolutePath);
+                load(absolutePath);
             }
         }
     }
