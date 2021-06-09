@@ -17,7 +17,7 @@ public class NQueen {
      * @param queens 结果集合
      * @param col    当前列
      */
-    private void backtrack(char[][] queens, int col) {
+    private void backtrack_all(char[][] queens, int col) {
         if (col >= queens.length) {
             System.out.println("************************");
             for (char[] queen : queens) {
@@ -31,10 +31,39 @@ public class NQueen {
             // 放置 Queen
             queens[row][col] = 'Q';
             // 继续下一个
-            backtrack(queens, col + 1);
+            backtrack_all(queens, col + 1);
             // 撤销当前选择（回溯）
             queens[row][col] = '.';
         }
+    }
+
+    /**
+     * 可以选择行或列作为遍历标准
+     * 如下：行
+     *
+     * @param queens 结果集合
+     * @param row    当前行
+     * @return 【true:求得任意解】
+     */
+    private boolean backtrack_one(char[][] queens, int row) {
+        if (row >= queens.length) {
+            for (char[] queen : queens) {
+                System.out.println(Arrays.toString(queen));
+            }
+            return true;
+        }
+        for (int col = 0; col < queens.length; col++) {
+            // 当前位置是否可以放置 Queen
+            if (!isValid(queens, row, col)) continue;
+            // 放置 Queen
+            queens[row][col] = 'Q';
+            // 继续下一个
+            boolean r = backtrack_one(queens, row + 1);
+            if (r) return true;
+            // 撤销当前选择（回溯）
+            queens[row][col] = '.';
+        }
+        return false;
     }
 
     /**
@@ -47,9 +76,15 @@ public class NQueen {
      */
     private boolean isValid(char[][] queens, int row, int col) {
         int n = queens.length;
-        // 行
+        // 列
         for (int i = 0; i < col; i++) {
             if (queens[row][i] == 'Q') {
+                return false;
+            }
+        }
+        // 行
+        for (int i = 0; i < row; i++) {
+            if (queens[i][col] == 'Q') {
                 return false;
             }
         }
@@ -73,6 +108,16 @@ public class NQueen {
             r++;
             c--;
         }
+        // 右上
+        r = row - 1;
+        c = col + 1;
+        while (r >= 0 && c < n) {
+            if (queens[r][c] == 'Q') {
+                return false;
+            }
+            r--;
+            c++;
+        }
         return true;
     }
 
@@ -82,6 +127,9 @@ public class NQueen {
         for (char[] queen : queens) {
             Arrays.fill(queen, '.');
         }
-        nQueen.backtrack(queens, 0);
+        // 所有解
+//         nQueen.backtrack_all(queens, 0);
+        // 任意解
+        nQueen.backtrack_one(queens, 0);
     }
 }
