@@ -6,6 +6,7 @@ public class DataContext {
 
     public void change(Integer i){
         synchronized (dataFlow.SHARED_DATA){
+            System.out.println(dataFlow.SHARED_DATA);
             dataFlow.changeData(i);
         }
     }

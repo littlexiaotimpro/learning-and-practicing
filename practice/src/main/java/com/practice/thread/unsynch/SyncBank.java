@@ -2,12 +2,6 @@ package com.practice.thread.unsynch;
 
 import java.util.Arrays;
 
-/**
- * @author XiaoSi
- * @className Bank
- * @description 测试线程同步的银行实体类
- * @date 2020/11/17
- */
 public class SyncBank {
 
     private final double[] accounts;

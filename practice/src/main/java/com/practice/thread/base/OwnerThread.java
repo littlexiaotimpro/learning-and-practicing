@@ -15,7 +15,10 @@ public class OwnerThread extends Thread{
 
     @Override
     public void run() {
-        dataContext.change(2);
-        System.out.println("自定义的继承线程类的执行方法");
+        for (int i = 0; i < 10; i++) {
+            if((i & 1) == 1) continue;
+            System.out.println(getName());
+            dataContext.change(i);
+        }
     }
 }

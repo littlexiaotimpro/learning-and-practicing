@@ -12,7 +12,10 @@ public class OwnerRunnable implements Runnable {
 
     @Override
     public void run() {
-        dataContext.change(1);
-        System.out.println("自定义的实现Runnable接口的线程的执行方法");
+        for (int i = 0; i < 10; i++) {
+            if ((i & 1) == 0) continue;
+            System.out.println(Thread.currentThread().getName());
+            dataContext.change(i);
+        }
     }
 }

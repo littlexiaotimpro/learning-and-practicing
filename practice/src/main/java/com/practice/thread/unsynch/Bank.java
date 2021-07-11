@@ -5,12 +5,6 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * @author XiaoSi
- * @className Bank
- * @description 测试线程同步的银行实体类
- * @date 2020/11/17
- */
 public class Bank {
 
     private final double[] accounts;
@@ -52,7 +46,7 @@ public class Bank {
                  */
                 sufficientFunds.await();
             }
-            System.out.print(Thread.currentThread());
+            System.out.print(Thread.currentThread().getName());
             System.out.printf(" Account of [from:%d] balance is [%.2f]，[to:%d] balance is [%.2f]", from, accounts[from], to, accounts[to]);
             accounts[from] -= amount;
             System.out.printf("%10.2f from [%d] to [%d]", amount, from, to);

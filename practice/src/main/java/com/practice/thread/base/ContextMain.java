@@ -9,18 +9,17 @@ public class ContextMain {
     public static void main(String[] args) throws InterruptedException {
         // 定义线程
         OwnerThread ownerThread = new OwnerThread();
+        ownerThread.setName("Thread");
         ownerThread.setDataContext(dataContext);
         OwnerRunnable ownerRunnable = new OwnerRunnable();
         ownerRunnable.setDataContext(dataContext);
-        Thread thread = new Thread(ownerRunnable);
+        Thread thread = new Thread(ownerRunnable, "Runnable");
 
         // 开启线程
         dataContext.change(0);
         Thread.sleep(3000);
         ownerThread.start();
         thread.start();
-
-        System.out.println(dataContext.getDataFlow().SHARED_DATA);
     }
 
 }
