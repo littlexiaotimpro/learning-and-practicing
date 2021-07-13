@@ -109,25 +109,38 @@ public class JoinMain {
 //        JoinMain joinMain = new JoinMain();
 //        joinMain.millisWithZero();
 //        joinMain.withMillis(2000);
-        Thread a = new Thread(() -> {
-            System.out.println("执行A");
+//        Thread a = new Thread(() -> {
+//            System.out.println("执行A");
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }, "a");
+//        Thread b = new Thread(() -> {
+//            System.out.println("执行B");
+//        }, "b");
+//        a.start();
+//        // 当a线程执行完成后，main线程继续执行
+////        a.join();
+//        // 线程a先执行1s(主线程暂停1s)
+//        a.join(1000);
+//        // b线程的状态存在多种可能
+//        b.start();
+//        System.out.println(a.getName() + ":" + a.getState());
+//        System.out.println(b.getName() + ":" + b.getState());
+
+        Thread thread = new Thread(() -> {
             try {
-                Thread.sleep(2000);
+                System.out.println("子线程睡眠1s");
+                Thread.sleep(1000);
+                System.out.println("子线程执行完成");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }, "a");
-        Thread b = new Thread(() -> {
-            System.out.println("执行B");
-        }, "b");
-        a.start();
-        // 当a线程执行完成后，main线程继续执行
-        a.join();
-        //
-        a.join(1000);
-        // b线程的状态存在多种可能
-        b.start();
-        System.out.println(a.getName() + ":" + a.getState());
-        System.out.println(b.getName() + ":" + b.getState());
+        }, "thread-a");
+        thread.start();
+        thread.join();
+        System.out.println("调用A线程的join方法后，这句话会后输出");
     }
 }
