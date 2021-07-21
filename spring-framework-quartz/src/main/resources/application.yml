@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: quartz app
+  h2:
+    console:
+      path: /h2-console #进入h2 web操作界面的路径
+      enabled: true #开启h2 web界面
+  datasource:
+    driver-class-name: org.h2.Driver
+    schema: classpath:db/schema-ddl-h2.sql
+    data: classpath:db/data-dml-h2.sql
+    url: jdbc:h2:mem:quartz
+    username: root
+    password: 123456
+
+# 日志配置
+logging:
+  # 日志配置文件
+  #  config: classpath:logback.xml
+  # 日志格式
+  pattern:
+    console: "%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n"
+    file: "%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n"
+  #（具体包）输出的日志级别
+  level:
+    org.springframework: debug

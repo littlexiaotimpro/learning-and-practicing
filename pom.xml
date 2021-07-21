@@ -21,6 +21,7 @@
         <module>spring-framework-redis</module>
         <module>spring-framework-swagger</module>
         <module>spring-framework-kafka</module>
+        <module>spring-framework-quartz</module>
     </modules>
 
     <parent>
