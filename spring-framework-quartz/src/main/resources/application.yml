@@ -15,6 +15,33 @@ spring:
     url: jdbc:h2:mem:quartz
     username: root
     password: 123456
+  quartz:
+    #相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: scheduler
+            instanceId: AUTO
+          # quartz 数据表配置
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 5
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    #数据库方式
+    job-store-type: jdbc
+    #初始化表结构
+    jdbc:
+      schema: classpath:org/quartz/impl/jdbcjobstore/tables_@@platform@@.sql
+      initialize-schema: embedded
 
 # 日志配置
 logging:
@@ -26,4 +53,4 @@ logging:
     file: "%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n"
   #（具体包）输出的日志级别
   level:
-    org.springframework: debug
+    org.springframework: info
