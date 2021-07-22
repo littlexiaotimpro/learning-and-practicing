@@ -22,6 +22,7 @@
         <module>spring-framework-swagger</module>
         <module>spring-framework-kafka</module>
         <module>spring-framework-quartz</module>
+        <module>spring-framework-hibernate</module>
     </modules>
 
     <parent>
