@@ -1,8 +1,13 @@
 package com.practice.nio.file;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class FileStoreService {
 
@@ -10,7 +15,7 @@ public class FileStoreService {
     private final Path fileStorageLocation;
 
     public FileStoreService() {
-        this.fileStorageLocation = Paths.get("./uploads").toAbsolutePath().normalize();
+        this.fileStorageLocation = Paths.get("./practice/src/main/dir/uploads").toAbsolutePath().normalize();
         try {
             Files.createDirectories(this.fileStorageLocation);
         } catch (Exception ex) {
@@ -18,9 +23,12 @@ public class FileStoreService {
         }
     }
 
-    public void storeFile() {
+    public void storeFile(File file, String fileName) throws IOException {
         System.out.println(fileStorageLocation);
         // TODO 文件存储
+        Path targetLocation = this.fileStorageLocation.resolve(fileName);
+        final FileInputStream fileInputStream = new FileInputStream(file);
+        Files.copy(fileInputStream, targetLocation, StandardCopyOption.REPLACE_EXISTING);
     }
 
 }
