@@ -24,6 +24,7 @@ public class CGLibProxy {
             @Override
             public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
                 System.out.println("CGLIB 扩展代理前置逻辑实现！");
+                System.out.println(o.getClass() + "." + method.getName());
                 // TODO 此处可自主新增逻辑
                 Object result = methodProxy.invokeSuper(o, objects);
                 // 如下的方法会陷入死循环
