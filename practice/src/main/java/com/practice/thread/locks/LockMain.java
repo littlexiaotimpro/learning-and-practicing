@@ -16,9 +16,10 @@ public class LockMain {
             }
             Runnable run = () -> {
                 try {
-                    while (true) {
-                        long[] longs = lockObject.lockMethod(key);
-                        System.out.println("After: " + Arrays.toString(longs));
+                    int j = 0;
+                    while (j < 5) {
+                        lockObject.lockMethod(key);
+                        j++;
                         Thread.sleep(10);
                     }
                 } catch (InterruptedException e) {

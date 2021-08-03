@@ -13,7 +13,7 @@ public class LockObject {
 
     private volatile long[] arr = new long[]{1, 2, 3, 4, 5, 6, 7, 8};
 
-    public long[] lockMethod(String key) {
+    public void lockMethod(String key) {
         synchronized (lockConditionMap){
             LockCondition lockCondition;
             if (lockConditionMap.containsKey(key)) {
@@ -33,8 +33,8 @@ public class LockObject {
                         arr[i] = id;
                     }
                 }
+                System.out.println("After: " + Arrays.toString(arr));
                 lockCondition.condition.signalAll();
-                return arr;
             } finally {
                 System.out.println("UNLOCK");
                 lockCondition.lock.unlock();
