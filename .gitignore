@@ -28,3 +28,4 @@ awesome.iml
 /spring-framework-quartz/spring-framework-quartz.iml
 /spring-framework-hibernate/target/
 /spring-framework-hibernate/spring-framework-hibernate.iml
+/practice/src/main/java/com/practice/thread/locks/eg4/deadlock.log
