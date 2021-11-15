@@ -44,7 +44,7 @@
         <!-- 从父项目引入包，默认使用父版本同级包 -->
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
 
     </dependencies>

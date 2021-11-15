@@ -13,10 +13,14 @@ public class _Map {
         map.put("b", Arrays.asList("a", "b", "c"));
         for (Map.Entry<String, List<String>> stringListEntry : map.entrySet()) {
             List<String> value = stringListEntry.getValue();
-            if (value.get(0) == null) {
+            if (value == null) {
                 System.out.println("Has null");
             }
         }
+        List<String> put = map.put("a", Arrays.asList("a", ""));
+        System.out.println(put);
+        put = map.put("b", Arrays.asList("a", ""));
+        System.out.println(put);
     }
 
     public static void main(String[] args) {
