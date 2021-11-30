@@ -1,6 +1,6 @@
 package com.pratice.redis.service.impl;
 
-import com.pratice.redis.config.RedisProperties;
+import com.pratice.redis.config.AuthCodeProperties;
 import com.pratice.redis.service.AuthCodeService;
 import com.pratice.redis.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class AuthCodeServiceImpl implements AuthCodeService {
 
 
     private RedisService redisService;
-    private RedisProperties redisProperties;
+    private AuthCodeProperties authCodeProperties;
 
     @Autowired
     public void setRedisService(RedisService redisService) {
@@ -22,8 +22,8 @@ public class AuthCodeServiceImpl implements AuthCodeService {
     }
 
     @Autowired
-    public void setRedisProperties(RedisProperties redisProperties) {
-        this.redisProperties = redisProperties;
+    public void setRedisProperties(AuthCodeProperties authCodeProperties) {
+        this.authCodeProperties = authCodeProperties;
     }
 
     @Override
@@ -34,9 +34,9 @@ public class AuthCodeServiceImpl implements AuthCodeService {
             sb.append(random.nextInt(10));
         }
         //验证码绑定手机号并存储到redis
-        String key = redisProperties.getPrefixAuthCode() + telephone;
+        String key = authCodeProperties.getAuthCode().getPrefix() + telephone;
         redisService.set(key, sb.toString());
-        redisService.expire(key, redisProperties.getExpireAuthCode());
+        redisService.expire(key, authCodeProperties.getAuthCode().getExpire());
         return sb.toString();
     }
 
@@ -45,7 +45,7 @@ public class AuthCodeServiceImpl implements AuthCodeService {
         if (StringUtils.isEmpty(authCode)) {
             return "请输入验证码";
         }
-        String realAuthCode = redisService.get(redisProperties.getPrefixAuthCode() + telephone);
+        String realAuthCode = redisService.get(authCodeProperties.getAuthCode().getPrefix() + telephone);
         boolean result = authCode.equals(realAuthCode);
         if (result) {
             return "验证码校验成功";

@@ -1,7 +1,7 @@
 package com.practice.redis.test;
 
 import com.pratice.redis.bean.Example;
-import com.pratice.redis.config.AutoConfiguration;
+import com.pratice.redis.config.DemoRedisAutoConfiguration;
 import com.pratice.redis.service.AuthCodeService;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,7 +14,7 @@ public class RedisConfigurationTest {
 
     @Test
     public void test() {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutoConfiguration.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(DemoRedisAutoConfiguration.class);
         ConfigurableEnvironment environment = applicationContext.getEnvironment();
         String property = environment.getProperty("spring.redis.host");
         System.out.println(property);
@@ -36,9 +36,9 @@ public class RedisConfigurationTest {
 
     @Test
     public void testAuthCode() {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutoConfiguration.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(DemoRedisAutoConfiguration.class);
         AuthCodeService authCodeService = applicationContext.getBean(AuthCodeService.class);
-        String phone = "17640124094";
+        String phone = "17240124094";
         // 生成验证码
         String authCode = authCodeService.generateAuthCode(phone);
         System.out.println(MessageFormat.format("获取验证码成功，验证码: {0}", authCode));
