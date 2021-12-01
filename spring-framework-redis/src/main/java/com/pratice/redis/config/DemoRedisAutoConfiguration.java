@@ -1,6 +1,7 @@
 package com.pratice.redis.config;
 
 import com.pratice.redis.bean.Example;
+import com.pratice.redis.config.properties.AuthCodeProperties;
 import com.pratice.redis.factory.DefaultYamlPropertySourceFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;

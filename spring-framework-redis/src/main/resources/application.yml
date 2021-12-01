@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: lettuce-cluster
+    active: redisson-cluster
   main:
     lazy-initialization: false
 

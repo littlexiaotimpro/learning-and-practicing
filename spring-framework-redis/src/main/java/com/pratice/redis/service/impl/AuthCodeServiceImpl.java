@@ -1,6 +1,6 @@
 package com.pratice.redis.service.impl;
 
-import com.pratice.redis.config.AuthCodeProperties;
+import com.pratice.redis.config.properties.AuthCodeProperties;
 import com.pratice.redis.service.AuthCodeService;
 import com.pratice.redis.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;

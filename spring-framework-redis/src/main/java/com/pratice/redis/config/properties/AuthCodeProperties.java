@@ -1,4 +1,4 @@
-package com.pratice.redis.config;
+package com.pratice.redis.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

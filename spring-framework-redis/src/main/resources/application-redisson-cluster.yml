@@ -1,0 +1,29 @@
+spring:
+  redis:
+    redisson:
+      config: |
+        clusterServersConfig:
+          nodeAddresses:
+            - redis://192.168.124.100:7001
+            - redis://192.168.124.100:7002
+            - redis://192.168.124.100:7003
+#          idleConnectionTimeout: 10000
+#          pingTimeout: 1000
+#          connectTimeout: 1000
+#          timeout: 1000
+#          retryAttempts: 3
+#          retryInterval: 1000
+#          reconnectionTimeout: 3000
+#          failedAttempts: 3
+#          password: null
+#          subscriptionsPerConnection: 5
+#          clientName: null
+#          loadBalancer: org.redisson.connection.balancer.RoundRobinLoadBalancer
+#          slaveSubscriptionConnectionMinimumIdleSize: 1
+#          slaveSubscriptionConnectionPoolSize: 25
+#          slaveConnectionMinimumIdleSize: 5
+#          slaveConnectionPoolSize: 100
+#          masterConnectionMinimumIdleSize: 5
+#          masterConnectionPoolSize: 100
+#          readMode: "SLAVE"
+#          scanInterval: 1000
