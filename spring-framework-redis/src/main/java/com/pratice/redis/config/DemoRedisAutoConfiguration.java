@@ -1,6 +1,7 @@
 package com.pratice.redis.config;
 
 import com.pratice.redis.bean.Example;
+import com.pratice.redis.bean.HashOperationsExample;
 import com.pratice.redis.config.properties.AuthCodeProperties;
 import com.pratice.redis.factory.DefaultYamlPropertySourceFactory;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -174,6 +175,7 @@ public class DemoRedisAutoConfiguration {
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
+        redisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
@@ -185,6 +187,7 @@ public class DemoRedisAutoConfiguration {
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new StringRedisSerializer());
+        redisTemplate.setHashValueSerializer(new StringRedisSerializer());
         return redisTemplate;
     }
 
@@ -192,6 +195,11 @@ public class DemoRedisAutoConfiguration {
     @Bean
     public Example example() {
         return new Example();
+    }
+
+    @Bean
+    public HashOperationsExample hashOperationsExample() {
+        return new HashOperationsExample();
     }
 
 }

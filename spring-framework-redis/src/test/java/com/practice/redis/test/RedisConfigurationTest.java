@@ -1,6 +1,7 @@
 package com.practice.redis.test;
 
 import com.pratice.redis.bean.Example;
+import com.pratice.redis.bean.HashOperationsExample;
 import com.pratice.redis.config.DemoRedisAutoConfiguration;
 import com.pratice.redis.service.AuthCodeService;
 import org.junit.Test;
@@ -31,6 +32,20 @@ public class RedisConfigurationTest {
         Object prefix = example.getValue("prefix");
         System.out.println(prefix.toString());
 
+        applicationContext.close();
+    }
+
+    @Test
+    public void test_hash() throws IllegalAccessException {
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(DemoRedisAutoConfiguration.class);
+        HashOperationsExample example = applicationContext.getBean(HashOperationsExample.class);
+        example.initValue();
+        HashOperationsExample.User user = example.getValue("N_1");
+        System.out.println(user);
+        user = example.getValue("N_3");
+        System.out.println(user);
+        user = example.getValue("N_4");
+        System.out.println(user);
         applicationContext.close();
     }
 
