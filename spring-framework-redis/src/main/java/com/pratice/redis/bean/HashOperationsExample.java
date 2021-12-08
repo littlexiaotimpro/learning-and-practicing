@@ -42,6 +42,8 @@ public class HashOperationsExample {
     private HashOperations<String, String, Object> hashOps;
 
     public void initValue() throws IllegalAccessException {
+        Cache cache = new Cache();
+        cache.setNames(new HashSet<>());
         for (Map.Entry<String, User> userEntry : modelData.entrySet()) {
             String key = String.format("%s%s", USER_KEY, userEntry.getKey());
             User user = userEntry.getValue();
@@ -50,7 +52,13 @@ public class HashOperationsExample {
                 field.setAccessible(true);
                 hashOps.put(key, field.getName(), field.get(user));
             }
+            cache.setUser(user);
+            cache.getNames().add(user.name);
         }
+        String key = String.format("%s%s", USER_KEY, "cache");
+        hashOps.put(key, "user", cache.user);
+        hashOps.put(key, "names", cache.names);
+        hashOps.increment(key, "version", 1d);
     }
 
     public User getValue(String str) throws IllegalAccessException {
@@ -63,6 +71,47 @@ public class HashOperationsExample {
             field.set(user, entries.get(field.getName()));
         }
         return user;
+    }
+
+    public Cache getCache(String str) {
+        String key = String.format("%s%s", USER_KEY, str);
+        User user = (User) hashOps.get(key, "user");
+        Set<String> names = (Set<String>) hashOps.get(key, "names");
+        return new Cache(user, names);
+    }
+
+    public static class Cache {
+        private User user;
+        private Set<String> names;
+
+        public Cache() {
+        }
+
+        public Cache(User user, Set<String> names) {
+            this.user = user;
+            this.names = names;
+        }
+
+        public User getUser() {
+            return user;
+        }
+
+        public void setUser(User user) {
+            this.user = user;
+        }
+
+        public Set<String> getNames() {
+            return names;
+        }
+
+        public void setNames(Set<String> names) {
+            this.names = names;
+        }
+
+        @Override
+        public String toString() {
+            return "user:" + user + ", names: " + names;
+        }
     }
 
     public static class User {

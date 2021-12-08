@@ -46,6 +46,8 @@ public class RedisConfigurationTest {
         System.out.println(user);
         user = example.getValue("N_4");
         System.out.println(user);
+        HashOperationsExample.Cache cache = example.getCache("cache");
+        System.out.println(cache);
         applicationContext.close();
     }
 
