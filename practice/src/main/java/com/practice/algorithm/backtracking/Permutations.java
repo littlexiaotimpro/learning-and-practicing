@@ -20,7 +20,7 @@ public class Permutations {
     }
 
     private void backtrack(int[] nums, LinkedList<Integer> tran, List<List<Integer>> res, List<Integer> choose) {
-        if (nums.length == 0) {
+        if (nums.length == tran.size()) {
             res.add(new LinkedList<>(tran));
             return;
         }
@@ -33,9 +33,10 @@ public class Permutations {
             // 若 reTable 中存在相同前缀的集合，则跳过
             if (check(reTable, tran)) {
                 tran.removeLast();
+                choose.remove(choose.size()-1);
                 continue;
             } else {
-                reTable.add(tran);
+                reTable.add(new LinkedList<>(tran));
             }
             // 进入下一层决策树
             backtrack(nums, tran, res, choose);
@@ -56,7 +57,7 @@ public class Permutations {
 
     public static void main(String[] args) {
         Permutations permutations = new Permutations();
-        int[] nums = new int[]{1, 1, 2};
+        int[] nums = new int[]{1, 2, 1, 2};
         List<List<Integer>> lists = permutations.permuteUnique(nums);
         System.out.println(lists);
     }
