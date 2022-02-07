@@ -91,7 +91,7 @@
     where logNo = #{logno,jdbcType=INTEGER}
   </update>
     <select id="findAll" resultMap="BaseResultMap">
-        select * from tb_log order by createtime;
+        select * from tb_log order by createtime limit 0, 2;
     </select>
     <select id="findOperatorByKey" parameterType="java.lang.String" resultType="java.lang.String">
         select operator from tb_log where logno = #{logNo,jdbcType=VARCHAR};

@@ -7,10 +7,23 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyBatisTest {
 
     private final String logNO = "720";
+
+    @Test
+    public void testFindAll(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AutoConfiguration.class);
+        LogService logService = context.getBean(LogService.class);
+        // 验证超时属性
+        List<LogBean> all = logService.findAll();
+        List<String> collect = all.stream().map(LogBean::getLogno).collect(Collectors.toList());
+        System.out.println(collect);
+        context.close();
+    }
 
     @Test
     public void testTimeOut() {

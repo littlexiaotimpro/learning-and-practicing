@@ -1,15 +1,15 @@
 package com.practice.test.dao;
 
 import com.practice.test.entity.LogBean;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
 /**
  * LogBeanDAO继承基类
  */
-@Repository
+@Mapper
 public interface LogBeanDAO extends MyBatisBaseDao<LogBean, Integer>{
 
     /**

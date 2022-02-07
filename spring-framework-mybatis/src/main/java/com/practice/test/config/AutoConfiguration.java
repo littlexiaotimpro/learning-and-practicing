@@ -49,7 +49,7 @@ public class AutoConfiguration {
     }
 
     /**
-     * 1.自动配置(不需要配置数据源的Bean注入和一下sqlSession注入)：
+     * 1.自动配置(不需要配置数据源的Bean注入和以下sqlSession注入)：
      * {@link org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration#sqlSessionFactory(DataSource)}
      * 在上述的 MyBatis 自动配置类中，如下：
      * <code>
