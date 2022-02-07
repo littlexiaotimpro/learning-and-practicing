@@ -23,6 +23,7 @@
         <module>spring-framework-kafka</module>
         <module>spring-framework-quartz</module>
         <module>spring-framework-hibernate</module>
+        <module>application-mybatis</module>
     </modules>
 
     <parent>
@@ -64,6 +65,11 @@
             <artifactId>aspectjweaver</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!-- 包版本统一管理 -->
@@ -73,6 +79,7 @@
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
         <alibaba-druid.version>1.1.23</alibaba-druid.version>
+        <mybatis-version>3.5.5</mybatis-version>
     </properties>
 
     <dependencyManagement>
