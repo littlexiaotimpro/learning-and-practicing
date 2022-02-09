@@ -3,6 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 开启MyBatis二级缓存 -->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    <!-- 自定义的类型处理器 -->
+    <typeHandlers>
+        <typeHandler handler="com.example.mybatis.handler.UserStatusHandler"/>
+    </typeHandlers>
     <!-- 环境配置，可以配置多个环境 -->
     <environments default="test01">
         <!--
@@ -15,24 +23,16 @@
             <!-- 数据源工厂配置，使用工厂来创建数据源 -->
             <dataSource type="org.apache.ibatis.datasource.pooled.PooledDataSourceFactory">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/whoai?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
-            </dataSource>
-        </environment>
-        <environment id="test02">
-            <!-- 事务管理器工厂配置 -->
-            <transactionManager type="org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory"/>
-            <!-- 数据源工厂配置，使用工厂来创建数据源 -->
-            <dataSource type="org.apache.ibatis.datasource.pooled.PooledDataSourceFactory">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/whoai?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
+                <property name="url"
+                          value="jdbc:mysql://127.0.0.1:3306/whoai?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
                 <property name="username" value="root"/>
                 <property name="password" value="123456"/>
             </dataSource>
         </environment>
     </environments>
+    <!-- 配置 Mapper XML -->
     <mappers>
         <mapper resource="mapper/LogBeanDAO.xml"/>
+        <mapper resource="mapper/UserDAO.xml"/>
     </mappers>
 </configuration>

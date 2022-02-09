@@ -2,8 +2,7 @@ package com.example.mybatis.dao;
 
 import com.example.mybatis.entity.LogBean;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.ArrayList;
+import org.apache.ibatis.session.ResultHandler;
 
 /**
  * LogBeanDAO继承基类
@@ -13,7 +12,7 @@ public interface LogBeanDAO extends MyBatisBaseDao<LogBean, Integer>{
     /**
      * 管理端获取所有日志
      */
-    ArrayList<LogBean> findAll();
+    void findAll(ResultHandler<LogBean> resultHandler);
 
     String findOperatorByKey(@Param("logNo") String logNo);
 

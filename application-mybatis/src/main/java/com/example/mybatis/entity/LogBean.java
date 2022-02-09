@@ -3,6 +3,7 @@ package com.example.mybatis.entity;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Accessors(chain = true)
@@ -11,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @ToString
-public class LogBean {
+public class LogBean implements Serializable {
     private String logno;
     private String operator;
     private String operation;

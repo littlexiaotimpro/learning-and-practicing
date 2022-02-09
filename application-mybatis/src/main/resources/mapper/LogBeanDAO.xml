@@ -9,24 +9,24 @@
         <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
     </resultMap>
     <sql id="Base_Column_List">
-    logNo, operator, `operation`, content, createtime
-  </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        logNo, operator, `operation`, content, createtime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap" flushCache="true">
         select
         <include refid="Base_Column_List"/>
         from tb_log
         where logNo = #{logno,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tb_log
-    where logNo = #{logno,jdbcType=INTEGER}
-  </delete>
+        delete from tb_log
+        where logNo = #{logno,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.example.mybatis.entity.LogBean">
-    insert into tb_log (logNo, operator, `operation`,
-      content, createtime)
-    values (#{logno,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR},
-      #{content,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
-  </insert>
+        insert into tb_log (logNo, operator, `operation`,
+        content, createtime)
+        values (#{logno,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR},
+        #{content,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+    </insert>
     <insert id="insertSelective" parameterType="com.example.mybatis.entity.LogBean">
         insert into tb_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -80,21 +80,30 @@
                 createtime = #{createtime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        where logNo = #{logno,jdbcType=INTEGER}
+        <where>
+            <if test="logno != null">
+                and logNo = #{logno,jdbcType=INTEGER}
+            </if>
+        </where>
     </update>
     <update id="updateByPrimaryKey" parameterType="com.example.mybatis.entity.LogBean">
-    update tb_log
-    set operator = #{operator,jdbcType=VARCHAR},
-      `operation` = #{operation,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
-    where logNo = #{logno,jdbcType=INTEGER}
-  </update>
+        update tb_log
+        set operator = #{operator,jdbcType=VARCHAR},
+        `operation` = #{operation,jdbcType=VARCHAR},
+        content = #{content,jdbcType=VARCHAR},
+        createtime = #{createtime,jdbcType=TIMESTAMP}
+        where logNo = #{logno,jdbcType=INTEGER}
+    </update>
     <select id="findAll" resultMap="BaseResultMap">
-        select * from tb_log order by createtime limit 0, 3;
+        select * from tb_log order by createtime;
     </select>
     <select id="findOperatorByKey" parameterType="java.lang.String" resultType="java.lang.String">
-        select operator from tb_log where logno = #{logNo,jdbcType=VARCHAR};
+        select operator from tb_log
+        <where>
+            <if test="logNo != null">
+                and logno = #{logNo,jdbcType=VARCHAR}
+            </if>
+        </where>
     </select>
     <insert id="insertOne" parameterType="com.example.mybatis.entity.LogBean">
         insert into tb_log
@@ -122,6 +131,16 @@
         </trim>
     </insert>
     <update id="updateOne" parameterType="java.lang.String">
-        update tb_log set operator=#{operator, jdbcType=VARCHAR} where logno = #{logNo, jdbcType=VARCHAR}
+        update tb_log
+        <set>
+            <if test="operator != null">
+                operator=#{operator, jdbcType=VARCHAR}
+            </if>
+        </set>
+        <where>
+            <if test="logNo != null">
+                and logno = #{logNo, jdbcType=VARCHAR}
+            </if>
+        </where>
     </update>
 </mapper>

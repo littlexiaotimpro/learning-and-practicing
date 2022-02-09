@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.dao.UserDAO">
+    <!--开启二级缓存的配置-->
+    <cache/>
+    <resultMap id="BaseResultMap" type="com.example.mybatis.entity.User">
+        <id column="adminId" jdbcType="INTEGER" property="id"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="permission" jdbcType="INTEGER" property="permission"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        adminId, account, `password`, permission, `status`, create_time
+    </sql>
+    <select id="checkLogin" parameterType="com.example.mybatis.entity.User" resultMap="BaseResultMap">
+        select * from tb_admin
+        <where>
+            account = #{admin.account} and `password` = #{admin.password}
+        </where>
+    </select>
+    <select id="findAllUser" resultMap="BaseResultMap">
+        select * from tb_admin
+    </select>
+    <select id="findUserByKey" resultMap="BaseResultMap">
+        select * from tb_admin
+        <where>
+            <if test="userId != null">
+                and adminId= #{userId}
+            </if>
+        </where>
+    </select>
+    <select id="findUserByKey_flushCache" resultMap="BaseResultMap" flushCache="true">
+        select * from tb_admin
+        <where>
+            <if test="userId != null">
+                and adminId= #{userId}
+            </if>
+        </where>
+    </select>
+    <select id="findUserByKey_useCache" resultMap="BaseResultMap" useCache="false">
+        select * from tb_admin
+        <where>
+            <if test="userId != null">
+                and adminId= #{userId}
+            </if>
+        </where>
+    </select>
+    <insert id="saveUser" parameterType="com.example.mybatis.entity.User">
+        insert into tb_admin
+        <trim prefix="(" suffix=")" prefixOverrides="," suffixOverrides=",">
+            <if test="admin.id!=null">adminId,</if>
+            <if test="admin.account!=null">account,</if>
+            <if test="admin.password!=null">password,</if>
+            <if test="admin.permission!=null">permission,</if>
+            <if test="admin.status!=null">status,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" prefixOverrides="," suffixOverrides=",">
+            <if test="admin.id!=null">#{admin.id},</if>
+            <if test="admin.account!=null">#{admin.account},</if>
+            <if test="admin.password!=null">#{admin.password},</if>
+            <if test="admin.permission!=null">#{admin.permission},</if>
+            <if test="admin.status!=null">#{admin.status,javaType=com.example.mybatis.entity.User$Status},</if>
+        </trim>
+    </insert>
+    <delete id="deleteUserByKey" parameterType="java.lang.Integer">
+        delete from tb_admin
+        <where>
+            <if test="userId != null">
+                and adminId= #{userId}
+            </if>
+        </where>
+    </delete>
+    <update id="updateAdmin" parameterType="com.example.mybatis.entity.User">
+        update tb_admin
+        <set>
+            <if test="admin.password!=null">password = #{admin.password},</if>
+            <if test="admin.permission!=null">permission = #{admin.permission},</if>
+            <if test="admin.status!=null">status = #{admin.status},</if>
+        </set>
+        <where>
+            <if test="admin.id != null">and adminId = #{admin.id}</if>
+        </where>
+    </update>
+</mapper>
