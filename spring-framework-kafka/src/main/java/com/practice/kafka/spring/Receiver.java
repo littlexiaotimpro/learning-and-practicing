@@ -1,6 +1,6 @@
 package com.practice.kafka.spring;
 
-import com.practice.kafka.spring.config.KafkaAutoConfiguration;
+import com.practice.kafka.spring.config.KafkaReceiverConfiguration;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 public class Receiver {
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(KafkaAutoConfiguration.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(KafkaReceiverConfiguration.class);
         DefaultKafkaConsumerFactory<Integer, String> consumerFactory = (DefaultKafkaConsumerFactory<Integer, String>) context.getBean(ConsumerFactory.class);
         consumerFactory.setBeanName("anotherConsumer");
         Consumer<Integer, String> consumer = consumerFactory.createConsumer();
@@ -28,13 +28,13 @@ public class Receiver {
             if (!records.isEmpty()) {
                 service.submit(() -> {
                     for (ConsumerRecord<Integer, String> record : records) {
-                        System.out.println("**********************");
+                        System.out.println("**********Receiver************");
                         System.out.println("* 当前线程: " + Thread.currentThread() + "\n"
                                 + "* 偏移量: " + record.offset() + "\n"
                                 + "* 主题: " + record.topic() + "\n"
                                 + "* 分区: " + record.partition() + "\n"
                                 + "* 获取的消息: " + record.value());
-                        System.out.println("**********************");
+                        System.out.println("**********Receiver************");
                     }
                 });
             }
