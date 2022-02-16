@@ -40,14 +40,15 @@ public class GroupMain {
          * 修改线程组的最大优先级后，组内线程的最高优先级不会超过该值
          * 若大于该值，会以线程组的最大优先级作为线程的优先级
          */
-        ThreadGroup threadGroup = Thread.currentThread().getThreadGroup();
+        ThreadGroup threadGroup = new ThreadGroup("self");
         threadGroup.setMaxPriority(6);
         IntStream.range(1, 10).forEach(i -> {
-            Thread thread = new Thread(() -> {
-                System.out.println(String.format("当前执行的线程是：%s，优先级：%d，线程组：%s",
+            Thread thread = new Thread(threadGroup, () -> {
+                System.out.println(String.format("当前执行的线程是：%s，优先级：%d，线程组：%s，父线程组：%s",
                         Thread.currentThread().getName(),
                         Thread.currentThread().getPriority(),
-                        Thread.currentThread().getThreadGroup().getName()));
+                        Thread.currentThread().getThreadGroup().getName(),
+                        threadGroup.getParent().getName()));
             }, "b-sub-thread-" + i);
             thread.setPriority(i);
             thread.start();
