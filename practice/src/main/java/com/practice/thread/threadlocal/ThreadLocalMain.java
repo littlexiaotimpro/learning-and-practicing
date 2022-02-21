@@ -19,6 +19,7 @@ public class ThreadLocalMain {
             Context.setInteger(2);
 
             List<Integer> integer = Context.getInteger();
+            log.info("{}:{}", integer, Context.getInteger());
             Context.removeInteger();
             log.info("{}:{}", integer, Context.getInteger());
         });
