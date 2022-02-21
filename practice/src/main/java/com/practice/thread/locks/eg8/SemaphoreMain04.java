@@ -43,8 +43,7 @@ public class SemaphoreMain04 {
                 // tryAcquire()申请许可
                 semaphore.acquire();
                 acquired = true;
-                log.info("线程【{}】申请许可成功", this.getName());
-                log.info("线程【{}】释放许可，可用许可数【{}】", this.getName(), semaphore.availablePermits());
+                log.info("线程【{}】申请许可成功，可用许可数【{}】", this.getName(), semaphore.availablePermits());
                 TimeUnit.SECONDS.sleep(30);
             } catch (InterruptedException e) {
                 e.printStackTrace();
