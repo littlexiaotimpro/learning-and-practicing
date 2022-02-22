@@ -23,7 +23,9 @@ thread
 │  ├─eg5            示例5：定制化线程执行顺序
 │  ├─eg6            同步阻塞队列实现
 │  ├─eg7            LockSupport实现线程同步
-│  └─eg8            Semaphore实现线程同步
+│  ├─eg8            Semaphore实现线程同步
+│  ├─eg9            CyclicBarrier 批量操作线程
+│  └─eg10           CountDownLatch 批量操作线程
 ├─threadlocal       线程本地变量
 └─unsynch           银行转账示例
 ```
