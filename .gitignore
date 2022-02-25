@@ -31,3 +31,5 @@ awesome.iml
 /practice/src/main/java/com/practice/thread/locks/eg4/deadlock.log
 /application-mybatis/target/
 /application-mybatis/application-mybatis.iml
+/application-redis/target/
+/application-redis/application-redis.iml

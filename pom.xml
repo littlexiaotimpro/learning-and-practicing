@@ -24,6 +24,7 @@
         <module>spring-framework-quartz</module>
         <module>spring-framework-hibernate</module>
         <module>application-mybatis</module>
+        <module>application-redis</module>
     </modules>
 
     <parent>
