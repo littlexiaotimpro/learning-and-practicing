@@ -1,4 +1,4 @@
-package com.practice.thread.juc;
+package com.practice.thread.aqs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -23,8 +23,8 @@ class Source {
     private final ReentrantLock lock = new ReentrantLock();
 
     public void subtract() {
+        lock.lock();
         try {
-            lock.lock();
             if (number > 0) {
                 Thread thread = Thread.currentThread();
                 number--;
