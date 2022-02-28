@@ -1,4 +1,4 @@
-package com.practice.nio.file;
+package com.practice.io.nio.file;
 
 import java.io.File;
 import java.io.IOException;
