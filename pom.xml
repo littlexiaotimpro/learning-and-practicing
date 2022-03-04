@@ -25,6 +25,7 @@
         <module>spring-framework-hibernate</module>
         <module>application-mybatis</module>
         <module>application-redis</module>
+        <module>application-netty</module>
     </modules>
 
     <parent>

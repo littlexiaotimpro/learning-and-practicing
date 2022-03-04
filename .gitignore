@@ -33,3 +33,5 @@ awesome.iml
 /application-mybatis/application-mybatis.iml
 /application-redis/target/
 /application-redis/application-redis.iml
+/application-netty/target/
+/application-netty/application-netty.iml
