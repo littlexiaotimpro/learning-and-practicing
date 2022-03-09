@@ -46,14 +46,15 @@ public class _BinarySearchTree {
         int[] tree = {4, 2, 5, 6, 1, 6, 3, 5};
         Node root = buildTree(tree);
         System.out.println(Arrays.toString(tree));
-        System.out.println(root);
+        Recursion recursion = new Recursion();
+        recursion.recursionTraverseTree(root);
     }
 
     /**
      * 二叉树的节点
      */
     private static class Node {
-        private int value;
+        private final int value;
         private Node left;
         private Node right;
 
@@ -62,6 +63,52 @@ public class _BinarySearchTree {
             this.value = value;
             this.left = null;
             this.right = null;
+        }
+    }
+
+    public static class Recursion {
+
+        public void recursionTraverseTree(Node root) {
+            System.out.println("-------前序遍历-------");
+            traversePreviousTree(root);
+            System.out.println("\n-------中序遍历-------");
+            traverseCenterTree(root);
+            System.out.println("\n-------后序遍历-------");
+            traverseAfterTree(root);
+            System.out.println();
+        }
+
+        /**
+         * 前序遍历
+         */
+        public void traversePreviousTree(Node root) {
+            if (root != null) {
+                System.out.print(root.value + " ");
+                traversePreviousTree(root.left);
+                traversePreviousTree(root.right);
+            }
+        }
+
+        /**
+         * 中序遍历
+         */
+        public void traverseCenterTree(Node root) {
+            if (root != null) {
+                traverseCenterTree(root.left);
+                System.out.print(root.value + " ");
+                traverseCenterTree(root.right);
+            }
+        }
+
+        /**
+         * 后序遍历
+         */
+        public void traverseAfterTree(Node root) {
+            if (root != null) {
+                traverseAfterTree(root.left);
+                traverseAfterTree(root.right);
+                System.out.print(root.value + " ");
+            }
         }
     }
 }

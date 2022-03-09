@@ -64,9 +64,9 @@ public class _Subsequence {
 
 
     public static void main(String[] args) {
-//        int[] source = {1, 3, 6, 7, 9, 4, 10, 5, 6};
-//        int lis = findLIS(source, source.length);
-//        System.out.println("最长上升子序列长度为：" + lis);
+        int[] source = {1, 3, 6, 7, 9, 4, 10, 5, 6};
+        int lis = findLIS(source, source.length);
+        System.out.println("最长上升子序列长度为：" + lis);
         System.out.println(hasSubStr("b", "abc"));
     }
 
