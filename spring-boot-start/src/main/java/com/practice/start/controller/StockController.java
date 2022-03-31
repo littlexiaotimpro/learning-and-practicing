@@ -28,4 +28,9 @@ public class StockController {
         throw new NullPointerException("空指针异常");
     }
 
+    @GetMapping(value = "/aspect")
+    public String aspect(){
+        return "Aspect";
+    }
+
 }
