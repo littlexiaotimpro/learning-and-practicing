@@ -17,6 +17,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>groupId</groupId>
+            <artifactId>spring-framework-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- 官方推荐的基于http协议访问的rest客户端，内部已经集成了基础的rest客户端和es -->
         <dependency>
             <groupId>org.elasticsearch.client</groupId>

@@ -1,8 +1,8 @@
 package com.pratice.redis.config;
 
+import com.practice.common.factory.DefaultYamlPropertySourceFactory;
 import com.pratice.redis.bean.Example;
 import com.pratice.redis.config.properties.AuthCodeProperties;
-import com.pratice.redis.factory.DefaultYamlPropertySourceFactory;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;

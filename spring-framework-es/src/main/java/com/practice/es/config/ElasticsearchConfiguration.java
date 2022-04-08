@@ -1,6 +1,6 @@
 package com.practice.es.config;
 
-import com.practice.es.factory.DefaultYamlPropertySourceFactory;
+import com.practice.common.factory.DefaultYamlPropertySourceFactory;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;

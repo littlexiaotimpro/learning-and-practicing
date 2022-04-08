@@ -27,6 +27,7 @@
         <module>application-redis</module>
         <module>application-netty</module>
         <module>spring-framework-es</module>
+        <module>spring-framework-common</module>
     </modules>
 
     <parent>
