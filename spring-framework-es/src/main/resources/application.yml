@@ -1,0 +1,17 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: es
+  elasticsearch:
+    rest:
+      # 配置es集群，通过（,）分隔，基于http协议的端口为 9200
+      # spring-boot提供了es的基于tcp连接（端口为 9300）操作的相关依赖支持，但是官网提示
+      # Deprecated in 7.0.0.
+      # The TransportClient is deprecated in favour of the Java High Level REST Client and will be removed in Elasticsearch 8.0. The migration guide describes all the steps needed to migrate.
+      uris: 192.168.124.100:9200
+      #username:
+      #password:
+      connectionTimeout: 10
+      readTimeout: 10

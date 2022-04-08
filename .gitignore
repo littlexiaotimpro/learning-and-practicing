@@ -35,3 +35,5 @@ awesome.iml
 /application-redis/application-redis.iml
 /application-netty/target/
 /application-netty/application-netty.iml
+/spring-framework-es/target/
+/spring-framework-es/spring-framework-es.iml

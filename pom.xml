@@ -26,6 +26,7 @@
         <module>application-mybatis</module>
         <module>application-redis</module>
         <module>application-netty</module>
+        <module>spring-framework-es</module>
     </modules>
 
     <parent>
