@@ -7,6 +7,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -44,11 +45,15 @@ public class ServerDemo01 {
                     int read = clientChannel.read(buffer);
 
                     if (read == -1) {
+                        System.out.println("客户端断开连接");
                         key.cancel();
                         clientChannel.close();
                     } else {
                         buffer.flip();
                         clientChannel.write(buffer);
+
+                        byte[] bytes1 = new byte[clientChannel.read(buffer)];
+                        System.out.println("客户端发送的消息: " + new String(bytes1, StandardCharsets.UTF_8));
                     }
                 }
             }

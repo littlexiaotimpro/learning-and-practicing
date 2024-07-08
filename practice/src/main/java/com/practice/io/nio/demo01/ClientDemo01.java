@@ -16,7 +16,7 @@ public class ClientDemo01 {
     public static void main(String[] args) throws IOException {
         InetSocketAddress remote = new InetSocketAddress(8888);
         SocketChannel socketChannel = SocketChannel.open(remote);
-        socketChannel.connect(remote);
+//        socketChannel.connect(remote);
 
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         Scanner input = new Scanner(System.in);
