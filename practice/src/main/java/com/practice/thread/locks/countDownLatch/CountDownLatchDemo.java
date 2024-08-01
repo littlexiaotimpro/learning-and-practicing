@@ -32,10 +32,11 @@ public class CountDownLatchDemo {
                 }
             }, tName).start();
         }
+        boolean await = true;
         // 线程计数为0的时候，自动唤醒主线程，并继续
-        // countDownLatch.await();
+        countDownLatch.await();
         // 到达超时时限时线程自动唤醒，并继续，计数
-        boolean await = countDownLatch.await(2, TimeUnit.SECONDS);
+//        await = countDownLatch.await(2, TimeUnit.SECONDS);
         System.out.println("主线程结束");
         long endTime = System.currentTimeMillis();
         System.out.println("总耗时: " + (endTime - starTime) + ", await: " + await);
