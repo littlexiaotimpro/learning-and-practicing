@@ -84,6 +84,8 @@
         <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
         <alibaba-druid.version>1.1.23</alibaba-druid.version>
         <mybatis-version>3.5.5</mybatis-version>
+        <hutool.version>5.8.36</hutool.version>
+        <easyexcel.verison>4.0.3</easyexcel.verison>
     </properties>
 
     <dependencyManagement>
@@ -127,6 +129,19 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${alibaba-druid.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba/easyexcel -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.verison}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
