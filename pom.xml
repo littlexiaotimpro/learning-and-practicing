@@ -28,6 +28,7 @@
         <module>application-netty</module>
         <module>spring-framework-es</module>
         <module>spring-framework-common</module>
+        <module>useful-excel</module>
     </modules>
 
     <parent>
@@ -86,6 +87,7 @@
         <mybatis-version>3.5.5</mybatis-version>
         <hutool.version>5.8.36</hutool.version>
         <easyexcel.verison>4.0.3</easyexcel.verison>
+        <poi.verison>5.4.0</poi.verison>
     </properties>
 
     <dependencyManagement>
@@ -142,6 +144,16 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel</artifactId>
                 <version>${easyexcel.verison}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.verison}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.verison}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
