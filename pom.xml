@@ -84,7 +84,8 @@
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
         <alibaba-druid.version>1.1.23</alibaba-druid.version>
-        <mybatis-version>3.5.5</mybatis-version>
+        <mybatis-version>3.5.19</mybatis-version>
+        <mybatis-plus-version>3.5.12</mybatis-plus-version>
         <hutool.version>5.8.36</hutool.version>
         <easyexcel.verison>4.0.3</easyexcel.verison>
         <poi.verison>5.4.0</poi.verison>
