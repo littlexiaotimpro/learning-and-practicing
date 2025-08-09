@@ -1,5 +1,7 @@
 package com.practice.stream;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class StreamMain {
@@ -22,6 +24,14 @@ public class StreamMain {
                 }
         ).sequential().max(Integer::compareTo).orElse(null);
         System.out.println("顺序流：" + integer);
+
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            list.add(i);
+        }
+        list.parallelStream().forEach(i->{
+            System.out.printf("%d, ", i);
+        });
     }
 
 }
